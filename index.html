@@ -13,23 +13,22 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- ===================================================================== -->
-  <!-- START MODULE CSS: THEME & LAYOUT STYLES                               -->
+  <!-- START MODULE CSS: ARCHITECTURAL EDITORIAL STYLES                      -->
   <!-- ===================================================================== -->
   <style>
     :root {
       --plum: rgb(116, 13, 130);          /* #740D82 */
       --plum-deep: rgb(78, 8, 88);
-      --plum-mid: rgba(116, 13, 130, 0.45);
-      --plum-wash: rgba(116, 13, 130, 0.11);
-      --plum-mist: rgba(168, 85, 180, 0.08);
-      --paper: #FBF9F7;
-      --paper-card: rgba(255, 255, 255, 0.88);
-      --ink: #1C1820;
-      --ink-soft: #564F5E;
-      --rule: #E4DCE7;
+      --plum-wash: rgba(116, 13, 130, 0.06);
+      --plum-line: rgba(116, 13, 130, 0.3);
+      --paper: #FAF8F5;
+      --paper-alt: #F3EFEA;
+      --ink: #18151B;
+      --ink-soft: #57505E;
+      --rule: #DED8E0;
       --serif: "Newsreader", Georgia, serif;
       --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: "JetBrains Mono", monospace;
@@ -45,112 +44,76 @@
       font-family: var(--sans);
       background-color: var(--paper);
       color: var(--ink);
-      line-height: 1.75;
+      line-height: 1.7;
       min-height: 100vh;
-      padding: 2.5rem 1.5rem 5rem;
-      display: flex;
-      justify-content: center;
-      overflow-x: hidden;
+      padding: 3.5rem 2rem 5rem;
       position: relative;
+      overflow-x: hidden;
     }
 
-    /* Ambient Watercolor Backdrop */
-    .watercolor-bg {
+    /* Subtle edge-bleed watercolor wash along top-right margin */
+    body::before {
+      content: "";
       position: fixed;
-      inset: 0;
+      top: -120px;
+      right: -120px;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(circle, rgba(116, 13, 130, 0.11) 0%, rgba(116, 13, 130, 0.03) 50%, transparent 72%);
+      filter: blur(50px);
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
     }
 
-    .wash {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(65px);
-      opacity: 0.75;
-    }
-
-    .wash-1 {
-      width: 520px;
-      height: 420px;
-      top: -90px;
-      left: 8%;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.16) 0%, rgba(186, 104, 200, 0.06) 55%, transparent 75%);
-      border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
-    }
-
-    .wash-2 {
-      width: 600px;
-      height: 500px;
-      top: 28%;
-      right: -80px;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.13) 0%, rgba(142, 36, 170, 0.05) 60%, transparent 78%);
-      border-radius: 40% 60% 65% 35% / 45% 55% 45% 55%;
-    }
-
-    .wash-3 {
-      width: 480px;
-      height: 380px;
-      bottom: -60px;
-      left: 18%;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.12) 0%, transparent 72%);
-      border-radius: 55% 45% 38% 62% / 52% 60% 40% 48%;
-    }
-
-    .canvas {
+    /* Left margin structural plumb line */
+    .frame {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 980px;
+      max-width: 1040px;
+      margin: 0 auto;
+      border-left: 2px solid var(--plum);
+      padding-left: 2.5rem;
     }
 
-    /* Cover Screen */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--plum);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ================= STAGE 1: COVER SCREEN (FLUSH LEFT) ================= */
     .cover-screen {
-      min-height: 78vh;
+      min-height: 76vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      align-items: flex-start;
+      text-align: left;
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
     .cover-screen.hiding {
       opacity: 0;
-      transform: translateY(-16px);
+      transform: translateX(-16px);
     }
 
     .cover-screen.hidden {
       display: none;
     }
 
-    .origin-dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--plum);
-      box-shadow: 0 0 0 8px var(--plum-wash), 0 0 0 18px var(--plum-mist);
-      margin-bottom: 1.75rem;
-    }
-
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      color: var(--plum);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
     .cover-title {
       font-family: var(--serif);
-      font-size: clamp(3.1rem, 7vw, 4.8rem);
-      font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -0.025em;
+      font-size: clamp(3.4rem, 7.5vw, 5.4rem);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.25rem;
     }
 
     .cover-subtitle {
@@ -158,70 +121,74 @@
       font-style: italic;
       font-size: 1.45rem;
       color: var(--ink-soft);
-      max-width: 620px;
-      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-bottom: 2.75rem;
     }
 
     .enter-btn {
       font-family: var(--mono);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      color: #FFFFFF;
-      background: var(--plum);
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 999px;
+      color: var(--paper);
+      background: var(--ink);
+      border: 1.5px solid var(--ink);
+      padding: 0.95rem 2rem;
+      border-radius: 2px;
       cursor: pointer;
-      box-shadow: 0 10px 28px rgba(116, 13, 130, 0.25);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
     .enter-btn:hover {
-      background: var(--plum-deep);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 34px rgba(116, 13, 130, 0.34);
+      background: var(--plum);
+      border-color: var(--plum);
+      transform: translateX(4px);
     }
 
-    /* 5-Node Fluid Flow Hub */
-    .flow-hub {
+    /* ================= STAGE 2: 5-ROW EDITORIAL DIRECTORY ================= */
+    .directory-view {
       display: none;
       opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .flow-hub.active {
+    .directory-view.active {
       display: block;
     }
 
-    .flow-hub.visible {
+    .directory-view.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .hub-origin {
-      text-align: center;
-      position: relative;
-      padding-top: 0.5rem;
-    }
-
-    .hub-top-bar {
+    .dir-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1.5px solid var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .dir-header h1 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
     .ghost-btn {
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--ink-soft);
-      background: var(--paper-card);
+      background: transparent;
       border: 1px solid var(--rule);
-      padding: 0.45rem 0.95rem;
-      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      border-radius: 2px;
       cursor: pointer;
-      backdrop-filter: blur(6px);
       transition: all 0.2s ease;
     }
 
@@ -230,172 +197,74 @@
       border-color: var(--plum);
     }
 
-    .origin-badge {
-      display: inline-flex;
+    /* Full-width stacked editorial index rows */
+    .index-list {
+      display: flex;
       flex-direction: column;
-      align-items: center;
-      background: var(--paper-card);
-      border: 1.5px solid var(--plum-mid);
-      padding: 1.25rem 2.5rem;
-      border-radius: 60px 60px 48px 48px;
-      box-shadow: 0 12px 36px rgba(116, 13, 130, 0.08);
-      backdrop-filter: blur(8px);
     }
 
-    .origin-badge h1 {
-      font-family: var(--serif);
-      font-size: 2.35rem;
-      font-weight: 600;
-      line-height: 1.1;
-    }
-
-    .origin-badge span {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--plum);
-      margin-top: 0.3rem;
-    }
-
-    .flow-streams {
+    .index-row {
       width: 100%;
-      height: 120px;
-      display: block;
-      overflow: visible;
-    }
-
-    .stream-path {
-      fill: none;
-      stroke: url(#plumWatercolorGrad);
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      opacity: 0.75;
-    }
-
-    .stream-wash {
-      fill: none;
-      stroke: rgba(116, 13, 130, 0.09);
-      stroke-width: 14;
-      stroke-linecap: round;
-      filter: blur(4px);
-    }
-
-    .nodes-constellation {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 2.15rem 1rem 2.15rem 0;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: 70px 1.2fr 1.4fr 40px;
+      align-items: baseline;
       gap: 1.5rem;
-      margin-top: -6px;
-    }
-
-    .node-card:nth-child(1),
-    .node-card:nth-child(2),
-    .node-card:nth-child(3) {
-      grid-column: span 2;
-    }
-
-    .node-card:nth-child(4),
-    .node-card:nth-child(5) {
-      grid-column: span 3;
-    }
-
-    .node-card {
-      position: relative;
-      background: var(--paper-card);
-      backdrop-filter: blur(10px);
-      border: 1.5px solid var(--rule);
-      padding: 2.15rem 1.85rem;
       text-align: left;
       cursor: pointer;
-      border-radius: 28px 18px 30px 20px;
-      box-shadow: 0 10px 30px rgba(116, 13, 130, 0.05);
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease,
-                  box-shadow 0.3s ease;
-      overflow: hidden;
+      transition: background-color 0.25s ease, padding-left 0.25s ease;
     }
 
-    .node-card:nth-child(even) {
-      border-radius: 18px 30px 20px 28px;
+    .index-row:hover {
+      background-color: var(--plum-wash);
+      padding-left: 1rem;
     }
 
-    .node-card::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -45px;
-      bottom: -55px;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.14) 0%, transparent 70%);
-      border-radius: 50%;
-      filter: blur(12px);
-      opacity: 0.4;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .node-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--plum);
-      box-shadow: 0 18px 42px rgba(116, 13, 130, 0.14);
-    }
-
-    .node-card:hover::before {
-      transform: scale(1.35);
-      opacity: 0.9;
-    }
-
-    .node-index {
+    .row-num {
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--plum);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.85rem;
     }
 
-    .node-index::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--plum);
-      box-shadow: 0 0 0 4px var(--plum-wash);
-    }
-
-    .node-card h2 {
+    .row-title {
       font-family: var(--serif);
-      font-size: 1.95rem;
-      font-weight: 600;
+      font-size: 2.25rem;
+      font-weight: 500;
       color: var(--ink);
-      margin-bottom: 0.5rem;
-      line-height: 1.15;
+      line-height: 1.1;
+      transition: color 0.2s ease;
     }
 
-    .node-card p {
+    .index-row:hover .row-title {
+      color: var(--plum);
+    }
+
+    .row-desc {
       font-size: 1rem;
       color: var(--ink-soft);
-      margin-bottom: 1.25rem;
     }
 
-    .node-arrow {
+    .row-arrow {
       font-family: var(--mono);
-      font-size: 0.82rem;
-      font-weight: 500;
+      font-size: 1.1rem;
       color: var(--plum);
-      display: inline-block;
-      transition: transform 0.25s ease;
+      text-align: right;
+      transition: transform 0.2s ease;
     }
 
-    .node-card:hover .node-arrow {
-      transform: translateX(5px);
+    .index-row:hover .row-arrow {
+      transform: translateX(6px);
     }
 
-    /* Expanded Section View */
+    /* ================= STAGE 3: EXPANDED SECTION VIEW ================= */
     .detail-view {
       display: none;
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
     .detail-view.active {
@@ -407,55 +276,44 @@
       transform: translateY(0);
     }
 
-    .mini-flow-bar {
+    /* Sharp Horizontal Strip Navigation */
+    .top-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      padding-bottom: 1.25rem;
-      margin-bottom: 2.25rem;
-      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: 1.1rem;
+      margin-bottom: 2.75rem;
+      border-bottom: 1.5px solid var(--ink);
     }
 
-    .mini-nodes {
+    .strip-tabs {
       display: flex;
-      gap: 0.6rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
 
-    .mini-node-btn {
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 500;
+    .strip-btn {
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.84rem;
       color: var(--ink-soft);
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      padding: 0.45rem 1rem;
-      border-radius: 999px;
+      padding: 0.35rem 0;
       cursor: pointer;
-      transition: all 0.2s ease;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    .mini-node-btn:hover {
-      border-color: var(--plum);
+    .strip-btn:hover {
       color: var(--plum);
     }
 
-    .mini-node-btn.active {
-      background: var(--plum);
-      color: #FFFFFF;
-      border-color: var(--plum);
-      box-shadow: 0 4px 14px rgba(116, 13, 130, 0.25);
-    }
-
-    .section-sheet {
-      background: var(--paper-card);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--rule);
-      border-radius: 24px;
-      padding: 3rem;
-      box-shadow: 0 14px 45px rgba(116, 13, 130, 0.05);
+    .strip-btn.active {
+      color: var(--plum);
+      font-weight: 500;
+      border-bottom-color: var(--plum);
     }
 
     .tab-panel {
@@ -474,99 +332,84 @@
       transform: translateY(0);
     }
 
-    .section-header {
-      margin-bottom: 2.25rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--rule);
+    .section-head {
+      margin-bottom: 2.5rem;
     }
 
-    .section-header h2 {
+    .section-head h2 {
       font-family: var(--serif);
-      font-size: 2.5rem;
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--ink);
+      font-size: 3rem;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
     h3 {
       font-family: var(--serif);
-      font-size: 1.55rem;
-      font-weight: 600;
+      font-size: 1.65rem;
+      font-weight: 500;
       color: var(--ink);
       line-height: 1.25;
     }
 
     p {
       color: var(--ink-soft);
-      margin-bottom: 1.15rem;
-      font-size: 1.06rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+      max-width: 68ch;
     }
 
-    /* Photo Frames */
-    .photo-box {
-      position: relative;
-      background: #FFFFFF;
+    /* Sharp Architectural Photo Frames */
+    .photo-frame {
       border: 1px solid var(--rule);
-      padding: 8px;
-      border-radius: 10px;
-      box-shadow: 6px 6px 0px var(--plum-wash);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: var(--paper-alt);
+      padding: 6px;
+      border-radius: 2px;
     }
 
-    .photo-box:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 8px 8px 0px rgba(116, 13, 130, 0.18);
-    }
-
-    .photo-box img {
+    .photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 6px;
-      background: var(--plum-mist);
     }
 
     .photo-caption {
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--ink-soft);
-      padding: 0.5rem 0.25rem 0.1rem;
+      padding: 0.45rem 0.15rem 0.1rem;
       display: block;
     }
 
     /* Module 3: About Me */
     .about-grid {
       display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 2.75rem;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
       align-items: start;
     }
 
     .portrait-box {
       aspect-ratio: 4 / 5;
-      transform: rotate(-1.5deg);
-    }
-
-    .portrait-box:hover {
-      transform: rotate(0deg) translate(-2px, -2px);
     }
 
     .text-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.75rem;
       flex-wrap: wrap;
-      margin-top: 1.5rem;
+      margin-top: 1.75rem;
       padding-top: 1.25rem;
-      border-top: 1px dashed var(--rule);
+      border-top: 1px solid var(--rule);
     }
 
     .text-links a {
       font-family: var(--mono);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--plum);
       text-decoration: none;
-      border-bottom: 1.5px solid transparent;
+      border-bottom: 1px solid var(--plum-line);
+      padding-bottom: 2px;
     }
 
     .text-links a:hover {
@@ -574,29 +417,32 @@
     }
 
     /* Module 4: Projects */
-    .entry {
-      padding-bottom: 2.75rem;
-      margin-bottom: 2.75rem;
+    .project-item {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 3rem;
+      margin-bottom: 3rem;
       border-bottom: 1px solid var(--rule);
+      align-items: start;
     }
 
-    .entry:last-child {
+    .project-item:last-child {
       border-bottom: none;
       margin-bottom: 0;
       padding-bottom: 0;
     }
 
-    .entry-photo {
+    .project-photo {
       width: 100%;
-      height: 310px;
-      margin-bottom: 1.35rem;
+      height: 270px;
     }
 
     .entry-meta {
       font-family: var(--mono);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--plum);
-      margin: 0.35rem 0 0.85rem;
+      margin: 0.4rem 0 1rem;
     }
 
     .entry-links {
@@ -606,11 +452,11 @@
     }
 
     .entry-links a {
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 0.85rem;
       color: var(--ink);
       text-decoration: none;
-      border-bottom: 2px solid var(--plum);
+      border-bottom: 1.5px solid var(--plum);
       padding-bottom: 2px;
     }
 
@@ -621,10 +467,10 @@
     /* Module 5: Experiences */
     .exp-row {
       display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 1.85rem;
-      padding-bottom: 2.25rem;
-      margin-bottom: 2.25rem;
+      grid-template-columns: 220px 1fr;
+      gap: 2.25rem;
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
       border-bottom: 1px solid var(--rule);
     }
 
@@ -635,25 +481,27 @@
     }
 
     .exp-thumb {
-      width: 190px;
-      height: 140px;
+      width: 100%;
+      height: 155px;
     }
 
     /* Module 6: Skills */
     .skills-columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin-bottom: 2.5rem;
+      gap: 3rem;
+      margin-bottom: 2.75rem;
     }
 
     .skill-group h4 {
       font-family: var(--mono);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: var(--plum);
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ink);
     }
 
     .skill-list {
@@ -661,8 +509,8 @@
     }
 
     .skill-list li {
-      padding: 0.55rem 0;
-      border-bottom: 1px dashed var(--rule);
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--rule);
       font-size: 1.02rem;
       color: var(--ink);
       display: flex;
@@ -671,82 +519,78 @@
 
     .skill-list li span {
       font-family: var(--mono);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--ink-soft);
     }
 
     .snapshot-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
     .snapshot-box {
-      height: 200px;
+      height: 220px;
     }
 
     /* Module 7: Subjects */
     .subject-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.75rem;
+      gap: 2rem;
     }
 
-    .subject-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 1.35rem;
-      border-radius: 14px;
+    .subject-item {
+      border-top: 1.5px solid var(--ink);
+      padding-top: 1.25rem;
     }
 
     .subject-photo {
-      height: 155px;
+      height: 170px;
       margin-bottom: 1rem;
-      box-shadow: none;
-      padding: 0;
-      border: none;
     }
 
     .subject-code {
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--plum);
     }
 
     .subject-title {
       font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin: 0.2rem 0 0.5rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0.25rem 0 0.5rem;
     }
 
     .subject-desc {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       color: var(--ink-soft);
       margin: 0;
     }
 
     footer {
-      margin-top: 3.5rem;
-      text-align: center;
+      margin-top: 4.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--ink-soft);
     }
 
     @media (max-width: 780px) {
-      .flow-streams { display: none; }
-      .nodes-constellation {
-        grid-template-columns: 1fr;
-        margin-top: 1.75rem;
+      body { padding: 2rem 1.25rem 4rem; }
+      .frame { padding-left: 1.25rem; }
+      .index-row {
+        grid-template-columns: 45px 1fr 24px;
+        gap: 0.75rem;
       }
-      .node-card:nth-child(n) { grid-column: span 1; }
-      .section-sheet { padding: 1.75rem 1.35rem; }
-      .about-grid, .exp-row, .skills-columns, .snapshot-pair, .subject-grid {
+      .row-desc { grid-column: 2 / 3; }
+      .row-title { font-size: 1.75rem; }
+      .about-grid, .project-item, .exp-row, .skills-columns, .snapshot-pair, .subject-grid {
         grid-template-columns: 1fr;
       }
-      .portrait-box { max-width: 240px; }
-      .exp-thumb { width: 100%; height: 180px; }
+      .portrait-box { max-width: 260px; }
     }
   </style>
   <!-- ===================================================================== -->
@@ -755,23 +599,16 @@
 </head>
 <body>
 
-  <div class="watercolor-bg" aria-hidden="true">
-    <div class="wash wash-1"></div>
-    <div class="wash wash-2"></div>
-    <div class="wash wash-3"></div>
-  </div>
-
-  <div class="canvas">
+  <div class="frame">
 
     <!-- =================================================================== -->
     <!-- START MODULE 1: COVER SCREEN                                        -->
     <!-- =================================================================== -->
     <section id="coverScreen" class="cover-screen">
-      <div class="origin-dot"></div>
       <span class="eyebrow">PORTFOLIO // 2026</span>
       <h2 class="cover-title">Your Full Name</h2>
-      <p class="cover-subtitle">Student, builder, and curious problem solver — diverging into code, research, and coursework.</p>
-      <button id="enterBtn" class="enter-btn">Explore Portfolio →</button>
+      <p class="cover-subtitle">Student, builder, and curious problem solver — working across code, systems, and design.</p>
+      <button id="enterBtn" class="enter-btn">Open Index →</button>
     </section>
     <!-- =================================================================== -->
     <!-- END MODULE 1                                                        -->
@@ -779,75 +616,51 @@
 
 
     <!-- =================================================================== -->
-    <!-- START MODULE 2: 5-NODE FLUID FLOW HUB                               -->
+    <!-- START MODULE 2: 5-SECTION EDITORIAL INDEX                           -->
     <!-- =================================================================== -->
-    <section id="flowHub" class="flow-hub">
-      <div class="hub-top-bar">
-        <button id="backCoverBtn" class="ghost-btn">← Cover</button>
-        <span class="eyebrow" style="margin:0;">SELECT A NODE TO EXPLORE</span>
-      </div>
-
-      <div class="hub-origin">
-        <div class="origin-badge">
+    <section id="directoryView" class="directory-view">
+      <div class="dir-header">
+        <div>
+          <span class="eyebrow">DIRECTORY</span>
           <h1>Your Full Name</h1>
-          <span>5 Branches • Click any node</span>
         </div>
-
-        <svg class="flow-streams" viewBox="0 0 980 120" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="plumWatercolorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="rgb(116, 13, 130)" stop-opacity="0.85" />
-              <stop offset="100%" stop-color="rgb(116, 13, 130)" stop-opacity="0.25" />
-            </linearGradient>
-          </defs>
-          <path class="stream-wash" d="M 490 0 C 490 55, 160 45, 160 120" />
-          <path class="stream-wash" d="M 490 0 C 490 60, 490 60, 490 120" />
-          <path class="stream-wash" d="M 490 0 C 490 55, 820 45, 820 120" />
-          <path class="stream-wash" d="M 490 0 C 490 75, 250 70, 250 120" />
-          <path class="stream-wash" d="M 490 0 C 490 75, 730 70, 730 120" />
-
-          <path class="stream-path" d="M 490 0 C 490 55, 160 45, 160 120" />
-          <path class="stream-path" d="M 490 0 C 490 60, 490 60, 490 120" />
-          <path class="stream-path" d="M 490 0 C 490 55, 820 45, 820 120" />
-          <path class="stream-path" d="M 490 0 C 490 75, 250 70, 250 120" />
-          <path class="stream-path" d="M 490 0 C 490 75, 730 70, 730 120" />
-        </svg>
+        <button id="backCoverBtn" class="ghost-btn">← Cover</button>
       </div>
 
-      <div class="nodes-constellation">
-        <button class="node-card" data-open-node="about">
-          <div class="node-index">NODE 01</div>
-          <h2>About Me</h2>
-          <p>Who I am, what drives my curiosity, and how to reach me.</p>
-          <span class="node-arrow">Open Node →</span>
+      <div class="index-list">
+        <button class="index-row" data-open-section="about">
+          <span class="row-num">01</span>
+          <span class="row-title">About Me</span>
+          <span class="row-desc">Background, interests, and direct contact links.</span>
+          <span class="row-arrow">→</span>
         </button>
 
-        <button class="node-card" data-open-node="projects">
-          <div class="node-index">NODE 02</div>
-          <h2>Projects</h2>
-          <p>Things I have built, broken, fixed, and shipped.</p>
-          <span class="node-arrow">Open Node →</span>
+        <button class="index-row" data-open-section="projects">
+          <span class="row-num">02</span>
+          <span class="row-title">Projects</span>
+          <span class="row-desc">Selected builds, software tools, and experiments.</span>
+          <span class="row-arrow">→</span>
         </button>
 
-        <button class="node-card" data-open-node="experience">
-          <div class="node-index">NODE 03</div>
-          <h2>Experiences</h2>
-          <p>Roles, labs, internships, and teams I have worked with.</p>
-          <span class="node-arrow">Open Node →</span>
+        <button class="index-row" data-open-section="experience">
+          <span class="row-num">03</span>
+          <span class="row-title">Experiences</span>
+          <span class="row-desc">Roles, research labs, internships, and leadership.</span>
+          <span class="row-arrow">→</span>
         </button>
 
-        <button class="node-card" data-open-node="skills">
-          <div class="node-index">NODE 04</div>
-          <h2>Skills</h2>
-          <p>Languages, tools, and everyday technical craft.</p>
-          <span class="node-arrow">Open Node →</span>
+        <button class="index-row" data-open-section="skills">
+          <span class="row-num">04</span>
+          <span class="row-title">Skills</span>
+          <span class="row-desc">Languages, technical tools, and everyday practice.</span>
+          <span class="row-arrow">→</span>
         </button>
 
-        <button class="node-card" data-open-node="subjects">
-          <div class="node-index">NODE 05</div>
-          <h2>Subjects</h2>
-          <p>University coursework, notes, and foundational study.</p>
-          <span class="node-arrow">Open Node →</span>
+        <button class="index-row" data-open-section="subjects">
+          <span class="row-num">05</span>
+          <span class="row-title">Subjects</span>
+          <span class="row-desc">University coursework, notes, and core study.</span>
+          <span class="row-arrow">→</span>
         </button>
       </div>
     </section>
@@ -858,275 +671,275 @@
 
     <!-- ==================== EXPANDED SECTION CONTAINER =================== -->
     <section id="detailView" class="detail-view">
-      <div class="mini-flow-bar">
-        <button id="backHubBtn" class="ghost-btn">← All 5 Nodes</button>
-        <div class="mini-nodes">
-          <button class="mini-node-btn" data-tab="about">About Me</button>
-          <button class="mini-node-btn" data-tab="projects">Projects</button>
-          <button class="mini-node-btn" data-tab="experience">Experiences</button>
-          <button class="mini-node-btn" data-tab="skills">Skills</button>
-          <button class="mini-node-btn" data-tab="subjects">Subjects</button>
+      <div class="top-strip">
+        <button id="backDirBtn" class="ghost-btn">← Index</button>
+        <div class="strip-tabs">
+          <button class="strip-btn" data-tab="about">01 About Me</button>
+          <button class="strip-btn" data-tab="projects">02 Projects</button>
+          <button class="strip-btn" data-tab="experience">03 Experiences</button>
+          <button class="strip-btn" data-tab="skills">04 Skills</button>
+          <button class="strip-btn" data-tab="subjects">05 Subjects</button>
         </div>
       </div>
 
-      <div class="section-sheet">
+      <!-- ================================================================= -->
+      <!-- START MODULE 3: ABOUT ME                                          -->
+      <!-- ================================================================= -->
+      <div id="about" class="tab-panel">
+        <div class="section-head">
+          <span class="eyebrow">01 // BIOGRAPHY</span>
+          <h2>About Me</h2>
+        </div>
+        <div class="about-grid">
+          <figure class="photo-frame portrait-box">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='13' fill='%23740D82'>[ portrait.jpg ]</text></svg>"
+              alt="Portrait photo"
+            />
+            <figcaption class="photo-caption">Fig 01. Portrait</figcaption>
+          </figure>
 
-        <!-- =============================================================== -->
-        <!-- START MODULE 3: ABOUT ME                                        -->
-        <!-- =============================================================== -->
-        <div id="about" class="tab-panel">
-          <div class="section-header">
-            <span class="eyebrow">NODE 01 // ORIGIN</span>
-            <h2>About Me</h2>
-          </div>
-          <div class="about-grid">
-            <figure class="photo-box portrait-box">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='13' fill='%23740D82'>[ portrait.jpg ]</text></svg>"
-                alt="Portrait photo"
-              />
-              <figcaption class="photo-caption">Fig 01. That's me.</figcaption>
-            </figure>
-
-            <div>
-              <h3>Hello, I'm [Your Name].</h3>
-              <p style="margin-top:0.75rem;">
-                Write a natural, conversational paragraph about who you are, what you're studying, and what draws you to your work.
-              </p>
-              <p>
-                Use this second paragraph for things outside your resume: a hobby you spend way too much time on, or what you're hoping to build next.
-              </p>
-              <div class="text-links">
-                <a href="mailto:you@example.com">you@example.com ↗</a>
-                <a href="https://github.com/yourusername" target="_blank">GitHub ↗</a>
-                <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn ↗</a>
-              </div>
+          <div>
+            <h3>Hello, I'm [Your Name].</h3>
+            <p style="margin-top:0.85rem;">
+              Write a natural, direct paragraph about who you are, what you're studying, and what draws you to your work.
+            </p>
+            <p>
+              Use this second paragraph for things outside your resume: a hobby you spend way too much time on, or what you're hoping to build next.
+            </p>
+            <div class="text-links">
+              <a href="mailto:you@example.com">you@example.com ↗</a>
+              <a href="https://github.com/yourusername" target="_blank">GitHub ↗</a>
+              <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn ↗</a>
             </div>
           </div>
         </div>
-        <!-- =============================================================== -->
-        <!-- END MODULE 3                                                    -->
-        <!-- =============================================================== -->
+      </div>
+      <!-- ================================================================= -->
+      <!-- END MODULE 3                                                      -->
+      <!-- ================================================================= -->
 
 
-        <!-- =============================================================== -->
-        <!-- START MODULE 4: PROJECTS                                        -->
-        <!-- =============================================================== -->
-        <div id="projects" class="tab-panel">
-          <div class="section-header">
-            <span class="eyebrow">NODE 02 // WORK</span>
-            <h2>Projects</h2>
-          </div>
+      <!-- ================================================================= -->
+      <!-- START MODULE 4: PROJECTS                                          -->
+      <!-- ================================================================= -->
+      <div id="projects" class="tab-panel">
+        <div class="section-head">
+          <span class="eyebrow">02 // SELECTED WORK</span>
+          <h2>Projects</h2>
+        </div>
 
-          <article class="entry">
-            <figure class="photo-box entry-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='820' height='310' viewBox='0 0 820 310'><rect width='820' height='310' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-one-preview.png ]</text></svg>"
-                alt="Project One preview"
-              />
-            </figure>
+        <article class="project-item">
+          <figure class="photo-frame project-photo">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='340' viewBox='0 0 600 340'><rect width='600' height='340' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-one.png ]</text></svg>"
+              alt="Project One preview"
+            />
+          </figure>
+          <div>
             <h3>Project Title One</h3>
-            <div class="entry-meta">Python • Data Analysis • Spring 2026</div>
+            <div class="entry-meta">Python • Data Analysis • 2026</div>
             <p>
               Tell the short story behind this project: what sparked the idea, what broke along the way, and how it works now.
             </p>
             <div class="entry-links">
-              <a href="#" target="_blank">Source Code</a>
-              <a href="#" target="_blank">Live Demo</a>
+              <a href="#" target="_blank">Source Code ↗</a>
+              <a href="#" target="_blank">Live Demo ↗</a>
             </div>
-          </article>
+          </div>
+        </article>
 
-          <article class="entry">
-            <figure class="photo-box entry-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='820' height='310' viewBox='0 0 820 310'><rect width='820' height='310' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-two-preview.png ]</text></svg>"
-                alt="Project Two preview"
-              />
-            </figure>
+        <article class="project-item">
+          <figure class="photo-frame project-photo">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='340' viewBox='0 0 600 340'><rect width='600' height='340' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-two.png ]</text></svg>"
+              alt="Project Two preview"
+            />
+          </figure>
+          <div>
             <h3>Project Title Two</h3>
             <div class="entry-meta">HTML / CSS / JS • Web Tool • 2025</div>
             <p>
               Describe what this tool solves and what you learned building it.
             </p>
             <div class="entry-links">
-              <a href="#" target="_blank">Source Code</a>
-            </div>
-          </article>
-        </div>
-        <!-- =============================================================== -->
-        <!-- END MODULE 4                                                    -->
-        <!-- =============================================================== -->
-
-
-        <!-- =============================================================== -->
-        <!-- START MODULE 5: EXPERIENCES                                     -->
-        <!-- =============================================================== -->
-        <div id="experience" class="tab-panel">
-          <div class="section-header">
-            <span class="eyebrow">NODE 03 // PATH</span>
-            <h2>Experiences</h2>
-          </div>
-
-          <div class="exp-row">
-            <figure class="photo-box exp-thumb">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='160' viewBox='0 0 220 160'><rect width='220' height='160' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ team.jpg ]</text></svg>"
-                alt="Experience photo"
-              />
-            </figure>
-            <div>
-              <h3>Role Title — Organization</h3>
-              <div class="entry-meta">Sept 2025 – Present • City / Lab</div>
-              <p>
-                Write plainly about what you actually did day-to-day, what you built or improved, and who you worked with.
-              </p>
+              <a href="#" target="_blank">Source Code ↗</a>
             </div>
           </div>
-
-          <div class="exp-row">
-            <figure class="photo-box exp-thumb">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='160' viewBox='0 0 220 160'><rect width='220' height='160' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ club.jpg ]</text></svg>"
-                alt="Club experience photo"
-              />
-            </figure>
-            <div>
-              <h3>Previous Role — Student Society / Company</h3>
-              <div class="entry-meta">Jan 2025 – Aug 2025 • Location</div>
-              <p>
-                Share a highlight or milestone from this experience—organizing an event, shipping a feature, or leading a small team.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- =============================================================== -->
-        <!-- END MODULE 5                                                    -->
-        <!-- =============================================================== -->
-
-
-        <!-- =============================================================== -->
-        <!-- START MODULE 6: SKILLS                                          -->
-        <!-- =============================================================== -->
-        <div id="skills" class="tab-panel">
-          <div class="section-header">
-            <span class="eyebrow">NODE 04 // CRAFT</span>
-            <h2>Skills</h2>
-          </div>
-
-          <div class="skills-columns">
-            <div class="skill-group">
-              <h4>Languages & Code</h4>
-              <ul class="skill-list">
-                <li>Python <span>Data & Scripting</span></li>
-                <li>C / C++ <span>Systems</span></li>
-                <li>JavaScript <span>Web</span></li>
-                <li>HTML & CSS <span>Interfaces</span></li>
-                <li>Git & Linux <span>Workflow</span></li>
-              </ul>
-            </div>
-
-            <div class="skill-group">
-              <h4>Tools & Practice</h4>
-              <ul class="skill-list">
-                <li>MATLAB <span>Simulation</span></li>
-                <li>LaTeX <span>Documentation</span></li>
-                <li>Data Visualization <span>Analysis</span></li>
-                <li>Prototyping <span>Hardware / UI</span></li>
-                <li>Technical Writing <span>Communication</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="snapshot-pair">
-            <figure class="photo-box snapshot-box">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ desk-setup.jpg ]</text></svg>"
-                alt="Workspace snapshot"
-              />
-            </figure>
-            <figure class="photo-box snapshot-box">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ notebook-or-lab.jpg ]</text></svg>"
-                alt="Lab or notebook snapshot"
-              />
-            </figure>
-          </div>
-        </div>
-        <!-- =============================================================== -->
-        <!-- END MODULE 6                                                    -->
-        <!-- =============================================================== -->
-
-
-        <!-- =============================================================== -->
-        <!-- START MODULE 7: SUBJECTS (COURSEWORK)                           -->
-        <!-- =============================================================== -->
-        <div id="subjects" class="tab-panel">
-          <div class="section-header">
-            <span class="eyebrow">NODE 05 // STUDY</span>
-            <h2>Subjects</h2>
-          </div>
-
-          <div class="subject-grid">
-            <div class="subject-card">
-              <div class="photo-box subject-photo">
-                <img
-                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='155' viewBox='0 0 380 155'><rect width='380' height='155' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ algorithms-notes.jpg ]</text></svg>"
-                  alt="Algorithms coursework"
-                />
-              </div>
-              <div class="subject-code">CS-101 • Semester 1</div>
-              <div class="subject-title">Algorithms & Data Structures</div>
-              <p class="subject-desc">Complexity analysis, sorting, graph traversal, and dynamic programming.</p>
-            </div>
-
-            <div class="subject-card">
-              <div class="photo-box subject-photo">
-                <img
-                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='155' viewBox='0 0 380 155'><rect width='380' height='155' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ linear-algebra.jpg ]</text></svg>"
-                  alt="Linear Algebra coursework"
-                />
-              </div>
-              <div class="subject-code">MATH-202 • Semester 2</div>
-              <div class="subject-title">Linear Algebra & Calculus</div>
-              <p class="subject-desc">Vector spaces, eigenvalues, multivariable optimization, and proofs.</p>
-            </div>
-
-            <div class="subject-card">
-              <div class="photo-box subject-photo">
-                <img
-                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='155' viewBox='0 0 380 155'><rect width='380' height='155' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ physics-lab.jpg ]</text></svg>"
-                  alt="Physics coursework"
-                />
-              </div>
-              <div class="subject-code">PHYS-105 • Semester 2</div>
-              <div class="subject-title">Mechanics & Thermodynamics</div>
-              <p class="subject-desc">Classical dynamics, energy conservation, and thermodynamic cycles.</p>
-            </div>
-
-            <div class="subject-card">
-              <div class="photo-box subject-photo">
-                <img
-                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='155' viewBox='0 0 380 155'><rect width='380' height='155' fill='%23F4EDF6'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ systems-design.jpg ]</text></svg>"
-                  alt="Systems Engineering coursework"
-                />
-              </div>
-              <div class="subject-code">ENG-304 • Semester 3</div>
-              <div class="subject-title">Systems Engineering</div>
-              <p class="subject-desc">Modeling, simulation, and architecture of integrated systems.</p>
-            </div>
-          </div>
-        </div>
-        <!-- =============================================================== -->
-        <!-- END MODULE 7                                                    -->
-        <!-- =============================================================== -->
-
+        </article>
       </div>
+      <!-- ================================================================= -->
+      <!-- END MODULE 4                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 5: EXPERIENCES                                       -->
+      <!-- ================================================================= -->
+      <div id="experience" class="tab-panel">
+        <div class="section-head">
+          <span class="eyebrow">03 // EXPERIENCE</span>
+          <h2>Experiences</h2>
+        </div>
+
+        <div class="exp-row">
+          <figure class="photo-frame exp-thumb">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><rect width='260' height='180' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ team.jpg ]</text></svg>"
+              alt="Experience photo"
+            />
+          </figure>
+          <div>
+            <h3>Role Title — Organization</h3>
+            <div class="entry-meta">Sept 2025 – Present • City / Lab</div>
+            <p>
+              Write plainly about what you actually did day-to-day, what you built or improved, and who you worked with.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <figure class="photo-frame exp-thumb">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><rect width='260' height='180' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ club.jpg ]</text></svg>"
+              alt="Club experience photo"
+            />
+          </figure>
+          <div>
+            <h3>Previous Role — Student Society / Company</h3>
+            <div class="entry-meta">Jan 2025 – Aug 2025 • Location</div>
+            <p>
+              Share a highlight or milestone from this experience—organizing an event, shipping a feature, or leading a small team.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- ================================================================= -->
+      <!-- END MODULE 5                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 6: SKILLS                                            -->
+      <!-- ================================================================= -->
+      <div id="skills" class="tab-panel">
+        <div class="section-head">
+          <span class="eyebrow">04 // CAPABILITIES</span>
+          <h2>Skills</h2>
+        </div>
+
+        <div class="skills-columns">
+          <div class="skill-group">
+            <h4>Languages & Code</h4>
+            <ul class="skill-list">
+              <li>Python <span>Data & Scripting</span></li>
+              <li>C / C++ <span>Systems</span></li>
+              <li>JavaScript <span>Web</span></li>
+              <li>HTML & CSS <span>Interfaces</span></li>
+              <li>Git & Linux <span>Workflow</span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h4>Tools & Practice</h4>
+            <ul class="skill-list">
+              <li>MATLAB <span>Simulation</span></li>
+              <li>LaTeX <span>Documentation</span></li>
+              <li>Data Visualization <span>Analysis</span></li>
+              <li>Prototyping <span>Hardware / UI</span></li>
+              <li>Technical Writing <span>Communication</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="snapshot-pair">
+          <figure class="photo-frame snapshot-box">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='440' height='220' viewBox='0 0 440 220'><rect width='440' height='220' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ desk-setup.jpg ]</text></svg>"
+              alt="Workspace snapshot"
+            />
+          </figure>
+          <figure class="photo-frame snapshot-box">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='440' height='220' viewBox='0 0 440 220'><rect width='440' height='220' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ notebook-or-lab.jpg ]</text></svg>"
+              alt="Lab or notebook snapshot"
+            />
+          </figure>
+        </div>
+      </div>
+      <!-- ================================================================= -->
+      <!-- END MODULE 6                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 7: SUBJECTS (COURSEWORK)                             -->
+      <!-- ================================================================= -->
+      <div id="subjects" class="tab-panel">
+        <div class="section-head">
+          <span class="eyebrow">05 // COURSEWORK</span>
+          <h2>Subjects</h2>
+        </div>
+
+        <div class="subject-grid">
+          <div class="subject-item">
+            <div class="photo-frame subject-photo">
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ algorithms-notes.jpg ]</text></svg>"
+                alt="Algorithms coursework"
+              />
+            </div>
+            <div class="subject-code">CS-101 • Semester 1</div>
+            <div class="subject-title">Algorithms & Data Structures</div>
+            <p class="subject-desc">Complexity analysis, sorting, graph traversal, and dynamic programming.</p>
+          </div>
+
+          <div class="subject-item">
+            <div class="photo-frame subject-photo">
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ linear-algebra.jpg ]</text></svg>"
+                alt="Linear Algebra coursework"
+              />
+            </div>
+            <div class="subject-code">MATH-202 • Semester 2</div>
+            <div class="subject-title">Linear Algebra & Calculus</div>
+            <p class="subject-desc">Vector spaces, eigenvalues, multivariable optimization, and proofs.</p>
+          </div>
+
+          <div class="subject-item">
+            <div class="photo-frame subject-photo">
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ physics-lab.jpg ]</text></svg>"
+                alt="Physics coursework"
+              />
+            </div>
+            <div class="subject-code">PHYS-105 • Semester 2</div>
+            <div class="subject-title">Mechanics & Thermodynamics</div>
+            <p class="subject-desc">Classical dynamics, energy conservation, and thermodynamic cycles.</p>
+          </div>
+
+          <div class="subject-item">
+            <div class="photo-frame subject-photo">
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ systems-design.jpg ]</text></svg>"
+                alt="Systems Engineering coursework"
+              />
+            </div>
+            <div class="subject-code">ENG-304 • Semester 3</div>
+            <div class="subject-title">Systems Engineering</div>
+            <p class="subject-desc">Modeling, simulation, and architecture of integrated systems.</p>
+          </div>
+        </div>
+      </div>
+      <!-- ================================================================= -->
+      <!-- END MODULE 7                                                      -->
+      <!-- ================================================================= -->
 
       <!-- ================================================================= -->
       <!-- START MODULE 8: FOOTER                                            -->
       <!-- ================================================================= -->
       <footer>
-        <span>Your Full Name — Hand-coded & hosted on GitHub Pages</span>
+        <span>Your Full Name — Hosted on GitHub Pages</span>
       </footer>
       <!-- ================================================================= -->
       <!-- END MODULE 8                                                      -->
@@ -1136,22 +949,22 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- START MODULE JS: FLUID NAVIGATION SCRIPT                              -->
+  <!-- START MODULE JS: NAVIGATION SCRIPT                                    -->
   <!-- ===================================================================== -->
   <script>
     const coverScreen = document.getElementById("coverScreen");
-    const flowHub = document.getElementById("flowHub");
+    const directoryView = document.getElementById("directoryView");
     const detailView = document.getElementById("detailView");
 
     const enterBtn = document.getElementById("enterBtn");
     const backCoverBtn = document.getElementById("backCoverBtn");
-    const backHubBtn = document.getElementById("backHubBtn");
+    const backDirBtn = document.getElementById("backDirBtn");
 
-    const nodeCards = document.querySelectorAll(".node-card");
-    const miniButtons = document.querySelectorAll(".mini-node-btn");
+    const indexRows = document.querySelectorAll(".index-row");
+    const stripButtons = document.querySelectorAll(".strip-btn");
     const panels = document.querySelectorAll(".tab-panel");
 
-    function showStage(hideEl, showEl) {
+    function switchStage(hideEl, showEl) {
       hideEl.classList.remove("visible");
       hideEl.classList.add("hiding");
       setTimeout(() => {
@@ -1162,12 +975,12 @@
         void showEl.offsetWidth;
         showEl.classList.add("visible");
         window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 280);
+      }, 260);
     }
 
-    function activatePanel(targetId) {
-      miniButtons.forEach((b) => {
-        b.classList.toggle("active", b.getAttribute("data-tab") === targetId);
+    function activateSection(targetId) {
+      stripButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.getAttribute("data-tab") === targetId);
       });
 
       panels.forEach((panel) => {
@@ -1187,24 +1000,24 @@
       }, 200);
     }
 
-    enterBtn.addEventListener("click", () => showStage(coverScreen, flowHub));
-    backCoverBtn.addEventListener("click", () => showStage(flowHub, coverScreen));
+    enterBtn.addEventListener("click", () => switchStage(coverScreen, directoryView));
+    backCoverBtn.addEventListener("click", () => switchStage(directoryView, coverScreen));
 
-    nodeCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const targetId = card.getAttribute("data-open-node");
-        showStage(flowHub, detailView);
-        activatePanel(targetId);
+    indexRows.forEach((row) => {
+      row.addEventListener("click", () => {
+        const targetId = row.getAttribute("data-open-section");
+        switchStage(directoryView, detailView);
+        activateSection(targetId);
       });
     });
 
-    backHubBtn.addEventListener("click", () => showStage(detailView, flowHub));
+    backDirBtn.addEventListener("click", () => switchStage(detailView, directoryView));
 
-    miniButtons.forEach((btn) => {
+    stripButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-tab");
         if (!document.getElementById(targetId).classList.contains("active")) {
-          activatePanel(targetId);
+          activateSection(targetId);
         }
       });
     });
