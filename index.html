@@ -548,3 +548,418 @@
       }
       .plum-rail {
         border-right: none;
+        border-bottom: 2px solid var(--ink);
+      }
+      .rail-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .nav-item {
+        width: auto;
+        flex: 1 1 auto;
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 0.85rem 1rem;
+      }
+      .nav-item:hover, .nav-item.active {
+        padding-left: 1rem;
+      }
+      .content-pane {
+        padding: 1.75rem 1.25rem;
+      }
+      .about-layout, .project-block, .exp-item, .skills-grid, .skills-photos, .course-table {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <!-- ===================================================================== -->
+  <!-- END MODULE CSS                                                        -->
+  <!-- ===================================================================== -->
+</head>
+<body>
+
+  <div class="watercolor-stain" aria-hidden="true"></div>
+
+  <!-- ===================================================================== -->
+  <!-- START MODULE 1: SPRING LAUNCH COVER (ONLY YOUR NAME)                  -->
+  <!-- ===================================================================== -->
+  <section id="springStage" class="spring-stage">
+    <div id="launcherUnit" class="launcher-unit" role="button" tabindex="0" aria-label="Launch portfolio">
+      <!-- Your Name perched on the spring -->
+      <div class="spring-name-plate">YOUR FULL NAME</div>
+
+      <!-- Geometric Coil Spring -->
+      <svg class="spring-svg" viewBox="0 0 140 110" aria-hidden="true">
+        <path
+          d="M 30 4 L 110 4 L 30 24 L 110 24 L 30 44 L 110 44 L 30 64 L 110 64 L 30 84 L 110 84 L 70 106"
+          fill="none"
+          stroke="rgb(116, 13, 130)"
+          stroke-width="4"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+      </svg>
+      <div class="spring-base-line"></div>
+      <span class="click-cue">[ click to launch ]</span>
+    </div>
+  </section>
+  <!-- ===================================================================== -->
+  <!-- END MODULE 1                                                          -->
+  <!-- ===================================================================== -->
+
+
+  <!-- ===================================================================== -->
+  <!-- START MODULE 2: MAIN WORKSPACE & NAVIGATION RAIL                      -->
+  <!-- ===================================================================== -->
+  <main id="workspace" class="workspace">
+    <aside class="plum-rail">
+      <div>
+        <div class="rail-identity">
+          <span class="rail-tag">// INDEX_2026</span>
+          <h1>YOUR FULL NAME</h1>
+        </div>
+
+        <nav class="rail-nav" role="tablist">
+          <button class="nav-item active" data-tab="about">
+            <span>About Me</span>
+            <span class="nav-code">01</span>
+          </button>
+          <button class="nav-item" data-tab="projects">
+            <span>Projects</span>
+            <span class="nav-code">02</span>
+          </button>
+          <button class="nav-item" data-tab="experience">
+            <span>Experiences</span>
+            <span class="nav-code">03</span>
+          </button>
+          <button class="nav-item" data-tab="skills">
+            <span>Skills</span>
+            <span class="nav-code">04</span>
+          </button>
+          <button class="nav-item" data-tab="subjects">
+            <span>Subjects</span>
+            <span class="nav-code">05</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="rail-footer">
+        <button id="resetSpringBtn" class="reset-spring-btn">↓ Return to Spring</button>
+      </div>
+    </aside>
+
+    <div class="content-pane">
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 3: ABOUT ME (WITH PHOTO)                             -->
+      <!-- ================================================================= -->
+      <section id="about" class="tab-panel active visible">
+        <div class="panel-header">
+          <h2>01 // About Me</h2>
+          <span class="panel-index">PROFILE_OVERVIEW</span>
+        </div>
+
+        <div class="about-layout">
+          <div class="flat-photo about-photo">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ portrait.jpg ]</text></svg>"
+              alt="Portrait"
+            />
+          </div>
+
+          <div>
+            <h3>Hello, I'm [Your Name].</h3>
+            <p style="margin-top:0.85rem;">
+              Write a direct, concise intro here—what you study, what you enjoy building, and what currently holds your attention.
+            </p>
+            <p>
+              Add a second short paragraph for personal context: hobbies, side projects, or the kind of problems you like solving.
+            </p>
+
+            <div class="flat-links">
+              <a href="mailto:you@example.com" class="flat-link">EMAIL ↗</a>
+              <a href="https://github.com/yourusername" target="_blank" class="flat-link">GITHUB ↗</a>
+              <a href="https://linkedin.com/in/yourusername" target="_blank" class="flat-link">LINKEDIN ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================================================================= -->
+      <!-- END MODULE 3                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 4: PROJECTS (WITH PHOTOS)                            -->
+      <!-- ================================================================= -->
+      <section id="projects" class="tab-panel">
+        <div class="panel-header">
+          <h2>02 // Projects</h2>
+          <span class="panel-index">SELECTED_BUILDS</span>
+        </div>
+
+        <article class="project-block">
+          <div class="flat-photo project-photo">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-01.png ]</text></svg>"
+              alt="Project One"
+            />
+          </div>
+          <div>
+            <h3>Project Title One</h3>
+            <span class="meta-line">PYTHON // DATA // 2026</span>
+            <p>
+              Explain what this project does, why you built it, and what the result was. Keep it concrete and technical.
+            </p>
+            <div class="flat-links" style="margin-top:1rem;">
+              <a href="#" target="_blank" class="flat-link">CODE ↗</a>
+              <a href="#" target="_blank" class="flat-link">DEMO ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-block">
+          <div class="flat-photo project-photo">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-02.png ]</text></svg>"
+              alt="Project Two"
+            />
+          </div>
+          <div>
+            <h3>Project Title Two</h3>
+            <span class="meta-line">HTML / CSS / JS // 2025</span>
+            <p>
+              Describe your second build here. Duplicate this <code>&lt;article class="project-block"&gt;</code> whenever you add another project.
+            </p>
+            <div class="flat-links" style="margin-top:1rem;">
+              <a href="#" target="_blank" class="flat-link">CODE ↗</a>
+            </div>
+          </div>
+        </article>
+      </section>
+      <!-- ================================================================= -->
+      <!-- END MODULE 4                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 5: EXPERIENCES (TEXT ONLY — NO PHOTOS)               -->
+      <!-- ================================================================= -->
+      <section id="experience" class="tab-panel">
+        <div class="panel-header">
+          <h2>03 // Experiences</h2>
+          <span class="panel-index">ROLES_&_HISTORY</span>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">2025.09 — PRESENT<br>CITY / LAB</div>
+          <div>
+            <h3>Role Title — Organization</h3>
+            <p>
+              Outline what you worked on, the systems or tools you used, and concrete outcomes from this position.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">2025.01 — 2025.08<br>LOCATION</div>
+          <div>
+            <h3>Previous Role — Student Society / Company</h3>
+            <p>
+              Describe your responsibilities, events organized, or technical contributions in this role.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- ================================================================= -->
+      <!-- END MODULE 5                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 6: SKILLS (WITH A FEW PHOTOS)                        -->
+      <!-- ================================================================= -->
+      <section id="skills" class="tab-panel">
+        <div class="panel-header">
+          <h2>04 // Skills</h2>
+          <span class="panel-index">STACK_&_TOOLS</span>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-box">
+            <h4>Languages</h4>
+            <ul class="skill-rows">
+              <li>Python <span>Scripting / Data</span></li>
+              <li>C / C++ <span>Systems</span></li>
+              <li>JavaScript <span>Web</span></li>
+              <li>HTML / CSS <span>Layout</span></li>
+              <li>SQL / Bash <span>CLI</span></li>
+            </ul>
+          </div>
+
+          <div class="skill-box">
+            <h4>Tools & Methods</h4>
+            <ul class="skill-rows">
+              <li>Git & GitHub <span>Version Control</span></li>
+              <li>MATLAB <span>Modeling</span></li>
+              <li>Linux <span>Environment</span></li>
+              <li>LaTeX <span>Typesetting</span></li>
+              <li>CAD / Prototyping <span>Hardware</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills-photos">
+          <div class="flat-photo skill-thumb">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ setup-01.jpg ]</text></svg>"
+              alt="Skill photo 1"
+            />
+          </div>
+          <div class="flat-photo skill-thumb">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ hardware-02.jpg ]</text></svg>"
+              alt="Skill photo 2"
+            />
+          </div>
+          <div class="flat-photo skill-thumb">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ workspace-03.jpg ]</text></svg>"
+              alt="Skill photo 3"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- ================================================================= -->
+      <!-- END MODULE 6                                                      -->
+      <!-- ================================================================= -->
+
+
+      <!-- ================================================================= -->
+      <!-- START MODULE 7: SUBJECTS / COURSEWORK (NO PHOTOS)                 -->
+      <!-- ================================================================= -->
+      <section id="subjects" class="tab-panel">
+        <div class="panel-header">
+          <h2>05 // Subjects</h2>
+          <span class="panel-index">ACADEMIC_COURSEWORK</span>
+        </div>
+
+        <div class="course-table">
+          <div class="course-cell">
+            <span class="course-tag">CS-101 // SEM 01</span>
+            <h3>Algorithms & Data Structures</h3>
+            <p>Asymptotic complexity, sorting algorithms, trees, graphs, and dynamic programming.</p>
+          </div>
+
+          <div class="course-cell">
+            <span class="course-tag">MATH-202 // SEM 02</span>
+            <h3>Linear Algebra & Calculus</h3>
+            <p>Vector spaces, eigenvalues, multivariable differentiation, and optimization.</p>
+          </div>
+
+          <div class="course-cell">
+            <span class="course-tag">PHYS-105 // SEM 02</span>
+            <h3>Mechanics & Thermodynamics</h3>
+            <p>Classical dynamics, conservation laws, and thermodynamic system analysis.</p>
+          </div>
+
+          <div class="course-cell">
+            <span class="course-tag">ENG-304 // SEM 03</span>
+            <h3>Systems Engineering</h3>
+            <p>Modeling, simulation, and architecture of integrated technical systems.</p>
+          </div>
+        </div>
+      </section>
+      <!-- ================================================================= -->
+      <!-- END MODULE 7                                                      -->
+      <!-- ================================================================= -->
+
+    </div>
+  </main>
+  <!-- ===================================================================== -->
+  <!-- END MODULE 2                                                          -->
+  <!-- ===================================================================== -->
+
+
+  <!-- ===================================================================== -->
+  <!-- START MODULE JS: SPRING LAUNCH & TAB SCRIPT                           -->
+  <!-- ===================================================================== -->
+  <script>
+    const springStage = document.getElementById("springStage");
+    const launcherUnit = document.getElementById("launcherUnit");
+    const workspace = document.getElementById("workspace");
+    const resetSpringBtn = document.getElementById("resetSpringBtn");
+
+    function launchPortfolio() {
+      if (launcherUnit.classList.contains("compressing")) return;
+
+      // 1. Compress the spring
+      launcherUnit.classList.add("compressing");
+
+      // 2. Release & launch name upward
+      setTimeout(() => {
+        launcherUnit.classList.remove("compressing");
+        launcherUnit.classList.add("launching");
+        springStage.classList.add("fade-out");
+      }, 190);
+
+      // 3. Reveal the flat workspace
+      setTimeout(() => {
+        springStage.classList.add("hidden");
+        launcherUnit.classList.remove("launching");
+        workspace.classList.add("active");
+        void workspace.offsetWidth;
+        workspace.classList.add("visible");
+      }, 540);
+    }
+
+    launcherUnit.addEventListener("click", launchPortfolio);
+    launcherUnit.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        launchPortfolio();
+      }
+    });
+
+    // Return to Spring Cover
+    resetSpringBtn.addEventListener("click", () => {
+      workspace.classList.remove("visible");
+      setTimeout(() => {
+        workspace.classList.remove("active");
+        springStage.classList.remove("hidden", "fade-out");
+      }, 350);
+    });
+
+    // Category Tab Switching
+    const navItems = document.querySelectorAll(".nav-item");
+    const panels = document.querySelectorAll(".tab-panel");
+
+    navItems.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-tab");
+        const targetPanel = document.getElementById(targetId);
+
+        if (targetPanel.classList.contains("active")) return;
+
+        navItems.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        panels.forEach((p) => {
+          p.classList.remove("visible");
+          setTimeout(() => {
+            if (!p.classList.contains("visible")) p.classList.remove("active");
+          }, 180);
+        });
+
+        setTimeout(() => {
+          targetPanel.classList.add("active");
+          void targetPanel.offsetWidth;
+          targetPanel.classList.add("visible");
+        }, 180);
+      });
+    });
+  </script>
+  <!-- ===================================================================== -->
+  <!-- END MODULE JS                                                         -->
+  <!-- ===================================================================== -->
+</body>
+</html>
