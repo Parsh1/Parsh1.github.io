@@ -15,20 +15,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- ===================================================================== -->
-  <!-- START MODULE CSS: FLAT PLUM MONOSPACE STYLES                          -->
+<!-- ===================================================================== -->
+  <!-- START MODULE CSS: DARK PLUM & UNDERWATER DIVE STYLES                  -->
   <!-- ===================================================================== -->
   <style>
     :root {
-      --plum: rgb(116, 13, 130);          /* #740D82 */
-      --plum-dark: rgb(76, 8, 86);
-      --plum-tint: rgba(116, 13, 130, 0.08);
-      --plum-wash: rgba(116, 13, 130, 0.16);
-      --paper: #F7F5F8;
+      --plum: rgb(74, 8, 84);             /* Deep Aubergine Plum */
+      --plum-dark: rgb(42, 4, 48);        /* Abyssal Plum */
+      --plum-mid: rgb(104, 15, 118);      /* Mid-tone Highlight */
+      --plum-tint: rgba(74, 8, 84, 0.08);
+      --plum-wash: rgba(74, 8, 84, 0.16);
+      --paper: #F6F4F7;
       --surface: #FFFFFF;
-      --ink: #17131A;
-      --ink-muted: #554D5C;
-      --border: #D8CFE0;
+      --ink: #141017;
+      --ink-muted: #524A59;
+      --border: #D5CCD9;
       --mono: "JetBrains Mono", "Space Mono", monospace;
     }
 
@@ -55,14 +56,14 @@
       left: -140px;
       width: 560px;
       height: 560px;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.14) 0%, rgba(116, 13, 130, 0.04) 55%, transparent 72%);
+      background: radial-gradient(circle, rgba(74, 8, 84, 0.15) 0%, rgba(74, 8, 84, 0.04) 55%, transparent 72%);
       filter: blur(45px);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ================= STAGE 1: SPRING LAUNCH COVER ================= */
-    .spring-stage {
+    /* ================= STAGE 1: WATER SURFACE & UNDERWATER DIVE ================= */
+    .ocean-stage {
       position: relative;
       z-index: 2;
       min-height: 100vh;
@@ -72,28 +73,68 @@
       justify-content: center;
       align-items: center;
       padding: 1.5rem;
-      transition: opacity 0.4s ease;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--paper) 0%, #EDE7F0 52%, rgba(74, 8, 84, 0.14) 52.5%, rgba(42, 4, 48, 0.35) 100%);
+      transition: opacity 0.45s ease;
     }
 
-    .spring-stage.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .spring-stage.hidden {
+    .ocean-stage.hidden {
       display: none;
     }
 
-    .launcher-unit {
+    /* Horizontal Waterline & Subtle Animated Wave */
+    .waterline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 52%;
+      height: 2px;
+      background: var(--plum);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .water-waves {
+      position: absolute;
+      left: -5%;
+      width: 110%;
+      top: calc(52% - 14px);
+      height: 28px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .wave-path {
+      fill: none;
+      stroke: var(--plum);
+      stroke-width: 1.5;
+      animation: driftWave 6s linear infinite;
+    }
+
+    @keyframes driftWave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-80px); }
+    }
+
+    /* Name floating right at the waterline */
+    .diver-unit {
+      position: relative;
+      z-index: 4;
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
       user-select: none;
+      transform: translateY(-28px);
+      transition: transform 0.3s ease;
     }
 
-    /* Your Name perched on top of the spring */
-    .spring-name-plate {
+    .diver-unit:hover {
+      transform: translateY(-20px);
+    }
+
+    .surface-name-plate {
       background: var(--plum);
       color: #FFFFFF;
       padding: 1.35rem 2.75rem;
@@ -102,63 +143,66 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
-      transform-origin: bottom center;
+      transition: background-color 0.2s ease, transform 0.25s ease;
     }
 
-    .launcher-unit:hover .spring-name-plate {
+    .diver-unit:hover .surface-name-plate {
       background: var(--plum-dark);
-      transform: translateY(6px);
     }
 
-    /* Compress state when clicked */
-    .launcher-unit.compressing .spring-name-plate {
-      transform: translateY(46px) scaleY(0.95);
-      transition: transform 0.18s ease-in;
-    }
-
-    /* Launch state upward */
-    .launcher-unit.launching .spring-name-plate {
-      transform: translateY(-65vh);
-      transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* Geometric SVG Spring */
-    .spring-svg {
-      width: 140px;
-      height: 110px;
-      display: block;
-      overflow: visible;
-      transform-origin: bottom center;
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .launcher-unit:hover .spring-svg {
-      transform: scaleY(0.92);
-    }
-
-    .launcher-unit.compressing .spring-svg {
-      transform: scaleY(0.45);
-      transition: transform 0.18s ease-in;
-    }
-
-    .launcher-unit.launching .spring-svg {
-      transform: scaleY(1.35);
-      transition: transform 0.25s ease-out;
-    }
-
-    .spring-base-line {
-      width: 220px;
-      height: 3px;
-      background: var(--ink);
-    }
-
-    .click-cue {
-      margin-top: 1.1rem;
+    .dive-cue {
+      margin-top: 1.5rem;
       font-size: 0.78rem;
-      color: var(--plum);
+      color: var(--plum-dark);
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    /* Plunge animation when clicked */
+    .diver-unit.submerging {
+      transform: translateY(48vh) scale(0.94);
+      opacity: 0;
+      transition: transform 0.85s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 0.75s ease 0.15s;
+    }
+
+    /* Fullscreen Underwater Depth Curtain */
+    .abyss-curtain {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(180deg, rgba(104, 15, 118, 0.85) 0%, rgba(42, 4, 48, 0.98) 65%, #16021A 100%);
+      transition: opacity 0.45s ease;
+      overflow: hidden;
+    }
+
+    .abyss-curtain.active {
+      opacity: 1;
+    }
+
+    /* Rising Monospace / Geometric Bubbles */
+    .bubble {
+      position: absolute;
+      bottom: -30px;
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.08);
+      animation: riseBubble linear forwards;
+    }
+
+    @keyframes riseBubble {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.15);
+        opacity: 0;
+      }
     }
 
     /* ================= STAGE 2: FLAT LOW-MARGIN WORKSPACE ================= */
@@ -187,7 +231,7 @@
       transform: translateY(0);
     }
 
-    /* Left Plum Navigation Rail (Where your name lands) */
+    /* Left Dark Plum Navigation Rail */
     .plum-rail {
       background: var(--plum);
       color: #FFFFFF;
@@ -199,12 +243,13 @@
 
     .rail-identity {
       padding: 2rem 1.75rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      background: var(--plum-dark);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     .rail-tag {
       font-size: 0.72rem;
-      opacity: 0.8;
+      opacity: 0.75;
       letter-spacing: 0.08em;
       display: block;
       margin-bottom: 0.5rem;
@@ -218,7 +263,6 @@
       letter-spacing: -0.01em;
     }
 
-    /* Flat Stacked Category Buttons */
     .rail-nav {
       display: flex;
       flex-direction: column;
@@ -229,7 +273,7 @@
       width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       color: rgba(255, 255, 255, 0.85);
       font-family: var(--mono);
       font-size: 0.95rem;
@@ -243,7 +287,7 @@
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--plum-dark);
       color: #FFFFFF;
       padding-left: 2.1rem;
     }
@@ -262,10 +306,11 @@
 
     .rail-footer {
       padding: 1.25rem 1.75rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      background: var(--plum-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    .reset-spring-btn {
+    .reset-surface-btn {
       width: 100%;
       background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.45);
@@ -278,9 +323,9 @@
       transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .reset-spring-btn:hover {
+    .reset-surface-btn:hover {
       background: #FFFFFF;
-      color: var(--plum);
+      color: var(--plum-dark);
     }
 
     /* Right Content Canvas */
@@ -305,7 +350,6 @@
       transform: translateY(0);
     }
 
-    /* Flat Section Header */
     .panel-header {
       display: flex;
       justify-content: space-between;
@@ -344,7 +388,7 @@
       max-width: 72ch;
     }
 
-    /* Flat Photo Frames (Used ONLY in About Me, Projects, Skills) */
+    /* Flat Photo Frames */
     .flat-photo {
       border: 1.5px solid var(--ink);
       background: var(--plum-tint);
@@ -426,7 +470,7 @@
       margin-bottom: 0.9rem;
     }
 
-    /* MODULE 5: EXPERIENCES (NO PHOTOS — CLEAN TYPOGRAPHIC GRID) */
+    /* MODULE 5: EXPERIENCES */
     .exp-item {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -450,7 +494,7 @@
       color: var(--plum);
     }
 
-    /* MODULE 6: SKILLS (WITH A FEW PHOTOS) */
+    /* MODULE 6: SKILLS */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -504,7 +548,7 @@
       height: 175px;
     }
 
-    /* MODULE 7: SUBJECTS / COURSEWORK (NO PHOTOS — FLAT SPEC TABLE) */
+    /* MODULE 7: SUBJECTS */
     .course-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -557,7 +601,7 @@
       .nav-item {
         width: auto;
         flex: 1 1 auto;
-        border-right: 1px solid rgba(255, 255, 255, 0.18);
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
         padding: 0.85rem 1rem;
       }
       .nav-item:hover, .nav-item.active {
@@ -579,33 +623,27 @@
 
   <div class="watercolor-stain" aria-hidden="true"></div>
 
+ <!-- ===================================================================== -->
+  <!-- START MODULE 1: WATER SURFACE & UNDERWATER DIVE COVER                 -->
   <!-- ===================================================================== -->
-  <!-- START MODULE 1: SPRING LAUNCH COVER (ONLY YOUR NAME)                  -->
-  <!-- ===================================================================== -->
-  <section id="springStage" class="spring-stage">
-    <div id="launcherUnit" class="launcher-unit" role="button" tabindex="0" aria-label="Launch portfolio">
-      <!-- Your Name perched on the spring -->
-      <div class="spring-name-plate">YOUR FULL NAME</div>
-
-      <!-- Geometric Coil Spring -->
-      <svg class="spring-svg" viewBox="0 0 140 110" aria-hidden="true">
-        <path
-          d="M 30 4 L 110 4 L 30 24 L 110 24 L 30 44 L 110 44 L 30 64 L 110 64 L 30 84 L 110 84 L 70 106"
-          fill="none"
-          stroke="rgb(116, 13, 130)"
-          stroke-width="4"
-          stroke-linejoin="round"
-          stroke-linecap="round"
-        />
-      </svg>
-      <div class="spring-base-line"></div>
-      <span class="click-cue">[ click to launch ]</span>
+  <section id="oceanStage" class="ocean-stage">
+    <div id="diverUnit" class="diver-unit" role="button" tabindex="0" aria-label="Dive into portfolio">
+      <div class="surface-name-plate">YOUR FULL NAME</div>
+      <span class="dive-cue">[ click to dive ]</span>
     </div>
+
+    <!-- Animated Waterline -->
+    <svg class="water-waves" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true">
+      <path class="wave-path" d="M0,14 Q20,4 40,14 T80,14 T120,14 T160,14 T200,14 T240,14 T280,14 T320,14 T360,14 T400,14 T440,14 T480,14 T520,14 T560,14 T600,14 T640,14 T680,14 T720,14 T760,14 T800,14 T840,14 T880,14 T920,14 T960,14 T1000,14 T1040,14 T1080,14 T1120,14 T1160,14 T1200,14 T1240,14 T1280,14" />
+    </svg>
+    <div class="waterline"></div>
   </section>
+
+  <!-- Underwater Depth Transition Overlay -->
+  <div id="abyssCurtain" class="abyss-curtain" aria-hidden="true"></div>
   <!-- ===================================================================== -->
   <!-- END MODULE 1                                                          -->
   <!-- ===================================================================== -->
-
 
   <!-- ===================================================================== -->
   <!-- START MODULE 2: MAIN WORKSPACE & NAVIGATION RAIL                      -->
@@ -643,7 +681,7 @@
       </div>
 
       <div class="rail-footer">
-        <button id="resetSpringBtn" class="reset-spring-btn">↓ Return to Spring</button>
+       <button id="resetSurfaceBtn" class="reset-surface-btn">↑ Surface</button>
       </div>
     </aside>
 
@@ -880,53 +918,69 @@
   <!-- ===================================================================== -->
 
 
-  <!-- ===================================================================== -->
-  <!-- START MODULE JS: SPRING LAUNCH & TAB SCRIPT                           -->
+<!-- ===================================================================== -->
+  <!-- START MODULE JS: UNDERWATER DIVE & TAB SCRIPT                         -->
   <!-- ===================================================================== -->
   <script>
-    const springStage = document.getElementById("springStage");
-    const launcherUnit = document.getElementById("launcherUnit");
+    const oceanStage = document.getElementById("oceanStage");
+    const diverUnit = document.getElementById("diverUnit");
+    const abyssCurtain = document.getElementById("abyssCurtain");
     const workspace = document.getElementById("workspace");
-    const resetSpringBtn = document.getElementById("resetSpringBtn");
+    const resetSurfaceBtn = document.getElementById("resetSurfaceBtn");
 
-    function launchPortfolio() {
-      if (launcherUnit.classList.contains("compressing")) return;
+    function spawnBubbles() {
+      abyssCurtain.innerHTML = "";
+      for (let i = 0; i < 22; i++) {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        const size = Math.floor(Math.random() * 14) + 6;
+        bubble.style.width = size + "px";
+        bubble.style.height = size + "px";
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.animationDuration = (Math.random() * 0.7 + 0.65) + "s";
+        bubble.style.animationDelay = (Math.random() * 0.25) + "s";
+        abyssCurtain.appendChild(bubble);
+      }
+    }
 
-      // 1. Compress the spring
-      launcherUnit.classList.add("compressing");
+    function diveIntoPortfolio() {
+      if (diverUnit.classList.contains("submerging")) return;
 
-      // 2. Release & launch name upward
+      // 1. Plunge name beneath waterline & darken water
+      diverUnit.classList.add("submerging");
+      spawnBubbles();
+
       setTimeout(() => {
-        launcherUnit.classList.remove("compressing");
-        launcherUnit.classList.add("launching");
-        springStage.classList.add("fade-out");
-      }, 190);
+        abyssCurtain.classList.add("active");
+      }, 220);
 
-      // 3. Reveal the flat workspace
+      // 2. Swap to deep plum workspace while submerged
       setTimeout(() => {
-        springStage.classList.add("hidden");
-        launcherUnit.classList.remove("launching");
+        oceanStage.classList.add("hidden");
+        diverUnit.classList.remove("submerging");
         workspace.classList.add("active");
         void workspace.offsetWidth;
         workspace.classList.add("visible");
-      }, 540);
+        abyssCurtain.classList.remove("active");
+      }, 780);
     }
 
-    launcherUnit.addEventListener("click", launchPortfolio);
-    launcherUnit.addEventListener("keydown", (e) => {
+    diverUnit.addEventListener("click", diveIntoPortfolio);
+    diverUnit.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        launchPortfolio();
+        diveIntoPortfolio();
       }
     });
 
-    // Return to Spring Cover
-    resetSpringBtn.addEventListener("click", () => {
-      workspace.classList.remove("visible");
+    // Return to Surface Cover
+    resetSurfaceBtn.addEventListener("click", () => {
+      abyssCurtain.classList.add("active");
       setTimeout(() => {
-        workspace.classList.remove("active");
-        springStage.classList.remove("hidden", "fade-out");
-      }, 350);
+        workspace.classList.remove("visible", "active");
+        oceanStage.classList.remove("hidden");
+        abyssCurtain.classList.remove("active");
+      }, 420);
     });
 
     // Category Tab Switching
