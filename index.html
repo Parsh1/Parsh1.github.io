@@ -6,32 +6,30 @@
   <!-- ===================================================================== -->
   <!-- START MODULE 0: PAGE TITLE                                            -->
   <!-- ===================================================================== -->
-  <title>Your Full Name — Portfolio</title>
+  <title>YOUR FULL NAME // PORTFOLIO</title>
   <!-- ===================================================================== -->
   <!-- END MODULE 0                                                          -->
   <!-- ===================================================================== -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- ===================================================================== -->
-  <!-- START MODULE CSS: ARCHITECTURAL EDITORIAL STYLES                      -->
+  <!-- START MODULE CSS: FLAT PLUM MONOSPACE STYLES                          -->
   <!-- ===================================================================== -->
   <style>
     :root {
       --plum: rgb(116, 13, 130);          /* #740D82 */
-      --plum-deep: rgb(78, 8, 88);
-      --plum-wash: rgba(116, 13, 130, 0.06);
-      --plum-line: rgba(116, 13, 130, 0.3);
-      --paper: #FAF8F5;
-      --paper-alt: #F3EFEA;
-      --ink: #18151B;
-      --ink-soft: #57505E;
-      --rule: #DED8E0;
-      --serif: "Newsreader", Georgia, serif;
-      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-      --mono: "JetBrains Mono", monospace;
+      --plum-dark: rgb(76, 8, 86);
+      --plum-tint: rgba(116, 13, 130, 0.08);
+      --plum-wash: rgba(116, 13, 130, 0.16);
+      --paper: #F7F5F8;
+      --surface: #FFFFFF;
+      --ink: #17131A;
+      --ink-muted: #554D5C;
+      --border: #D8CFE0;
+      --mono: "JetBrains Mono", "Space Mono", monospace;
     }
 
     * {
@@ -41,286 +39,261 @@
     }
 
     body {
-      font-family: var(--sans);
+      font-family: var(--mono);
       background-color: var(--paper);
       color: var(--ink);
-      line-height: 1.7;
+      line-height: 1.65;
       min-height: 100vh;
-      padding: 3.5rem 2rem 5rem;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Subtle edge-bleed watercolor wash along top-right margin */
-    body::before {
-      content: "";
+    /* Subtle watercolor plum wash in corner */
+    .watercolor-stain {
       position: fixed;
-      top: -120px;
-      right: -120px;
-      width: 540px;
-      height: 540px;
-      background: radial-gradient(circle, rgba(116, 13, 130, 0.11) 0%, rgba(116, 13, 130, 0.03) 50%, transparent 72%);
-      filter: blur(50px);
+      top: -140px;
+      left: -140px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(116, 13, 130, 0.14) 0%, rgba(116, 13, 130, 0.04) 55%, transparent 72%);
+      filter: blur(45px);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Left margin structural plumb line */
-    .frame {
+    /* ================= STAGE 1: SPRING LAUNCH COVER ================= */
+    .spring-stage {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      min-height: 100vh;
       width: 100%;
-      max-width: 1040px;
-      margin: 0 auto;
-      border-left: 2px solid var(--plum);
-      padding-left: 2.5rem;
-    }
-
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--plum);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.75rem;
-    }
-
-    /* ================= STAGE 1: COVER SCREEN (FLUSH LEFT) ================= */
-    .cover-screen {
-      min-height: 76vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      text-align: left;
-      transition: opacity 0.35s ease, transform 0.35s ease;
+      align-items: center;
+      padding: 1.5rem;
+      transition: opacity 0.4s ease;
     }
 
-    .cover-screen.hiding {
+    .spring-stage.fade-out {
       opacity: 0;
-      transform: translateX(-16px);
+      pointer-events: none;
     }
 
-    .cover-screen.hidden {
+    .spring-stage.hidden {
       display: none;
     }
 
-    .cover-title {
-      font-family: var(--serif);
-      font-size: clamp(3.4rem, 7.5vw, 5.4rem);
-      font-weight: 500;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-    }
-
-    .cover-subtitle {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.45rem;
-      color: var(--ink-soft);
-      max-width: 600px;
-      margin-bottom: 2.75rem;
-    }
-
-    .enter-btn {
-      font-family: var(--mono);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--paper);
-      background: var(--ink);
-      border: 1.5px solid var(--ink);
-      padding: 0.95rem 2rem;
-      border-radius: 2px;
+    .launcher-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      user-select: none;
     }
 
-    .enter-btn:hover {
+    /* Your Name perched on top of the spring */
+    .spring-name-plate {
       background: var(--plum);
-      border-color: var(--plum);
-      transform: translateX(4px);
+      color: #FFFFFF;
+      padding: 1.35rem 2.75rem;
+      border: 2px solid var(--ink);
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+      transform-origin: bottom center;
     }
 
-    /* ================= STAGE 2: 5-ROW EDITORIAL DIRECTORY ================= */
-    .directory-view {
+    .launcher-unit:hover .spring-name-plate {
+      background: var(--plum-dark);
+      transform: translateY(6px);
+    }
+
+    /* Compress state when clicked */
+    .launcher-unit.compressing .spring-name-plate {
+      transform: translateY(46px) scaleY(0.95);
+      transition: transform 0.18s ease-in;
+    }
+
+    /* Launch state upward */
+    .launcher-unit.launching .spring-name-plate {
+      transform: translateY(-65vh);
+      transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Geometric SVG Spring */
+    .spring-svg {
+      width: 140px;
+      height: 110px;
+      display: block;
+      overflow: visible;
+      transform-origin: bottom center;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .launcher-unit:hover .spring-svg {
+      transform: scaleY(0.92);
+    }
+
+    .launcher-unit.compressing .spring-svg {
+      transform: scaleY(0.45);
+      transition: transform 0.18s ease-in;
+    }
+
+    .launcher-unit.launching .spring-svg {
+      transform: scaleY(1.35);
+      transition: transform 0.25s ease-out;
+    }
+
+    .spring-base-line {
+      width: 220px;
+      height: 3px;
+      background: var(--ink);
+    }
+
+    .click-cue {
+      margin-top: 1.1rem;
+      font-size: 0.78rem;
+      color: var(--plum);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ================= STAGE 2: FLAT LOW-MARGIN WORKSPACE ================= */
+    .workspace {
       display: none;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      position: relative;
+      z-index: 1;
+      width: 96%;
+      max-width: 1440px;
+      margin: 1.25rem auto 2.5rem;
+      border: 2px solid var(--ink);
+      background: var(--surface);
     }
 
-    .directory-view.active {
-      display: block;
+    .workspace.active {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      min-height: calc(100vh - 3.75rem);
     }
 
-    .directory-view.visible {
+    .workspace.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .dir-header {
+    /* Left Plum Navigation Rail (Where your name lands) */
+    .plum-rail {
+      background: var(--plum);
+      color: #FFFFFF;
+      border-right: 2px solid var(--ink);
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1.5px solid var(--ink);
+    }
+
+    .rail-identity {
+      padding: 2rem 1.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .rail-tag {
+      font-size: 0.72rem;
+      opacity: 0.8;
+      letter-spacing: 0.08em;
+      display: block;
       margin-bottom: 0.5rem;
     }
 
-    .dir-header h1 {
-      font-family: var(--serif);
-      font-size: 2.6rem;
-      font-weight: 500;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+    .rail-identity h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
     }
 
-    .ghost-btn {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--ink-soft);
-      background: transparent;
-      border: 1px solid var(--rule);
-      padding: 0.45rem 0.9rem;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .ghost-btn:hover {
-      color: var(--plum);
-      border-color: var(--plum);
-    }
-
-    /* Full-width stacked editorial index rows */
-    .index-list {
+    /* Flat Stacked Category Buttons */
+    .rail-nav {
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
 
-    .index-row {
+    .nav-item {
       width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px solid var(--rule);
-      padding: 2.15rem 1rem 2.15rem 0;
-      display: grid;
-      grid-template-columns: 70px 1.2fr 1.4fr 40px;
-      align-items: baseline;
-      gap: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--mono);
+      font-size: 0.95rem;
       text-align: left;
+      padding: 1.25rem 1.75rem;
       cursor: pointer;
-      transition: background-color 0.25s ease, padding-left 0.25s ease;
-    }
-
-    .index-row:hover {
-      background-color: var(--plum-wash);
-      padding-left: 1rem;
-    }
-
-    .row-num {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--plum);
-    }
-
-    .row-title {
-      font-family: var(--serif);
-      font-size: 2.25rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.1;
-      transition: color 0.2s ease;
-    }
-
-    .index-row:hover .row-title {
-      color: var(--plum);
-    }
-
-    .row-desc {
-      font-size: 1rem;
-      color: var(--ink-soft);
-    }
-
-    .row-arrow {
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      color: var(--plum);
-      text-align: right;
-      transition: transform 0.2s ease;
-    }
-
-    .index-row:hover .row-arrow {
-      transform: translateX(6px);
-    }
-
-    /* ================= STAGE 3: EXPANDED SECTION VIEW ================= */
-    .detail-view {
-      display: none;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    .detail-view.active {
-      display: block;
-    }
-
-    .detail-view.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Sharp Horizontal Strip Navigation */
-    .top-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-bottom: 1.1rem;
-      margin-bottom: 2.75rem;
-      border-bottom: 1.5px solid var(--ink);
+      transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
     }
 
-    .strip-tabs {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      padding-left: 2.1rem;
     }
 
-    .strip-btn {
-      background: none;
-      border: none;
+    .nav-item.active {
+      background: var(--surface);
+      color: var(--plum);
+      font-weight: 700;
+      padding-left: 2.1rem;
+    }
+
+    .nav-code {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .rail-footer {
+      padding: 1.25rem 1.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .reset-spring-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #FFFFFF;
       font-family: var(--mono);
-      font-size: 0.84rem;
-      color: var(--ink-soft);
-      padding: 0.35rem 0;
+      font-size: 0.78rem;
+      padding: 0.6rem 0.9rem;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s ease, border-color 0.2s ease;
+      text-align: center;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .strip-btn:hover {
+    .reset-spring-btn:hover {
+      background: #FFFFFF;
       color: var(--plum);
     }
 
-    .strip-btn.active {
-      color: var(--plum);
-      font-weight: 500;
-      border-bottom-color: var(--plum);
+    /* Right Content Canvas */
+    .content-pane {
+      padding: 2.75rem 3.25rem;
+      background: var(--surface);
     }
 
     .tab-panel {
       display: none;
       opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     .tab-panel.active {
@@ -332,102 +305,107 @@
       transform: translateY(0);
     }
 
-    .section-head {
-      margin-bottom: 2.5rem;
+    /* Flat Section Header */
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.15rem;
+      margin-bottom: 2.25rem;
+      border-bottom: 2px solid var(--ink);
     }
 
-    .section-head h2 {
-      font-family: var(--serif);
-      font-size: 3rem;
-      font-weight: 500;
-      line-height: 1.08;
+    .panel-header h2 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
       letter-spacing: -0.02em;
+      color: var(--plum);
+    }
+
+    .panel-index {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
     }
 
     h3 {
-      font-family: var(--serif);
-      font-size: 1.65rem;
-      font-weight: 500;
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--ink);
-      line-height: 1.25;
+      margin-bottom: 0.35rem;
     }
 
     p {
-      color: var(--ink-soft);
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-      max-width: 68ch;
+      font-size: 0.96rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.15rem;
+      max-width: 72ch;
     }
 
-    /* Sharp Architectural Photo Frames */
-    .photo-frame {
-      border: 1px solid var(--rule);
-      background: var(--paper-alt);
-      padding: 6px;
-      border-radius: 2px;
+    /* Flat Photo Frames (Used ONLY in About Me, Projects, Skills) */
+    .flat-photo {
+      border: 1.5px solid var(--ink);
+      background: var(--plum-tint);
+      display: block;
+      overflow: hidden;
     }
 
-    .photo-frame img {
+    .flat-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .photo-caption {
-      font-family: var(--mono);
-      font-size: 0.74rem;
-      color: var(--ink-soft);
-      padding: 0.45rem 0.15rem 0.1rem;
-      display: block;
-    }
-
-    /* Module 3: About Me */
-    .about-grid {
+    /* MODULE 3: ABOUT ME */
+    .about-layout {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 3rem;
+      grid-template-columns: 270px 1fr;
+      gap: 2.75rem;
       align-items: start;
     }
 
-    .portrait-box {
+    .about-photo {
       aspect-ratio: 4 / 5;
+      width: 100%;
     }
 
-    .text-links {
+    .flat-links {
       display: flex;
-      gap: 1.75rem;
       flex-wrap: wrap;
+      gap: 0.85rem;
       margin-top: 1.75rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--rule);
     }
 
-    .text-links a {
-      font-family: var(--mono);
-      font-size: 0.88rem;
-      color: var(--plum);
+    .flat-link {
       text-decoration: none;
-      border-bottom: 1px solid var(--plum-line);
-      padding-bottom: 2px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--plum);
+      border: 1.5px solid var(--plum);
+      padding: 0.55rem 1.1rem;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .text-links a:hover {
-      border-bottom-color: var(--plum);
+    .flat-link:hover {
+      background: var(--plum);
+      color: #FFFFFF;
     }
 
-    /* Module 4: Projects */
-    .project-item {
+    /* MODULE 4: PROJECTS */
+    .project-block {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 2.5rem;
-      padding-bottom: 3rem;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--rule);
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.25rem;
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
       align-items: start;
     }
 
-    .project-item:last-child {
+    .project-block:last-child {
       border-bottom: none;
       margin-bottom: 0;
       padding-bottom: 0;
@@ -435,595 +413,138 @@
 
     .project-photo {
       width: 100%;
-      height: 270px;
+      height: 260px;
     }
 
-    .entry-meta {
-      font-family: var(--mono);
-      font-size: 0.82rem;
+    .meta-line {
+      display: inline-block;
+      background: var(--plum-tint);
       color: var(--plum);
-      margin: 0.4rem 0 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 0.9rem;
     }
 
-    .entry-links {
-      display: flex;
-      gap: 1.25rem;
-      margin-top: 1rem;
-    }
-
-    .entry-links a {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1.5px solid var(--plum);
-      padding-bottom: 2px;
-    }
-
-    .entry-links a:hover {
-      color: var(--plum);
-    }
-
-    /* Module 5: Experiences */
-    .exp-row {
+    /* MODULE 5: EXPERIENCES (NO PHOTOS — CLEAN TYPOGRAPHIC GRID) */
+    .exp-item {
       display: grid;
       grid-template-columns: 220px 1fr;
-      gap: 2.25rem;
-      padding-bottom: 2.5rem;
-      margin-bottom: 2.5rem;
-      border-bottom: 1px solid var(--rule);
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .exp-row:last-child {
+    .exp-item:first-of-type {
+      padding-top: 0;
+    }
+
+    .exp-item:last-child {
       border-bottom: none;
-      margin-bottom: 0;
       padding-bottom: 0;
     }
 
-    .exp-thumb {
-      width: 100%;
-      height: 155px;
+    .exp-date {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--plum);
     }
 
-    /* Module 6: Skills */
-    .skills-columns {
+    /* MODULE 6: SKILLS (WITH A FEW PHOTOS) */
+    .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2.75rem;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
     }
 
-    .skill-group h4 {
-      font-family: var(--mono);
-      font-size: 0.82rem;
+    .skill-box {
+      border: 1.5px solid var(--ink);
+      padding: 1.5rem;
+    }
+
+    .skill-box h4 {
+      font-size: 0.85rem;
+      color: #FFFFFF;
+      background: var(--plum);
+      padding: 0.35rem 0.75rem;
+      display: inline-block;
+      margin-bottom: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--plum);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--ink);
     }
 
-    .skill-list {
+    .skill-rows {
       list-style: none;
     }
 
-    .skill-list li {
-      padding: 0.65rem 0;
-      border-bottom: 1px solid var(--rule);
-      font-size: 1.02rem;
-      color: var(--ink);
+    .skill-rows li {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.92rem;
       display: flex;
       justify-content: space-between;
     }
 
-    .skill-list li span {
-      font-family: var(--mono);
+    .skill-rows li:last-child {
+      border-bottom: none;
+    }
+
+    .skill-rows li span {
+      color: var(--ink-muted);
       font-size: 0.8rem;
-      color: var(--ink-soft);
     }
 
-    .snapshot-pair {
+    .skills-photos {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.75rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
     }
 
-    .snapshot-box {
-      height: 220px;
+    .skill-thumb {
+      height: 175px;
     }
 
-    /* Module 7: Subjects */
-    .subject-grid {
+    /* MODULE 7: SUBJECTS / COURSEWORK (NO PHOTOS — FLAT SPEC TABLE) */
+    .course-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    .subject-item {
       border-top: 1.5px solid var(--ink);
-      padding-top: 1.25rem;
+      border-left: 1.5px solid var(--ink);
     }
 
-    .subject-photo {
-      height: 170px;
-      margin-bottom: 1rem;
+    .course-cell {
+      border-right: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 1.65rem;
+      transition: background-color 0.15s ease;
     }
 
-    .subject-code {
-      font-family: var(--mono);
+    .course-cell:hover {
+      background: var(--plum-tint);
+    }
+
+    .course-tag {
       font-size: 0.78rem;
+      font-weight: 700;
       color: var(--plum);
+      margin-bottom: 0.4rem;
+      display: block;
     }
 
-    .subject-title {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin: 0.25rem 0 0.5rem;
+    .course-cell h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
     }
 
-    .subject-desc {
-      font-size: 0.96rem;
-      color: var(--ink-soft);
-      margin: 0;
+    .course-cell p {
+      font-size: 0.88rem;
+      margin-bottom: 0;
     }
 
-    footer {
-      margin-top: 4.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--rule);
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--ink-soft);
-    }
-
-    @media (max-width: 780px) {
-      body { padding: 2rem 1.25rem 4rem; }
-      .frame { padding-left: 1.25rem; }
-      .index-row {
-        grid-template-columns: 45px 1fr 24px;
-        gap: 0.75rem;
-      }
-      .row-desc { grid-column: 2 / 3; }
-      .row-title { font-size: 1.75rem; }
-      .about-grid, .project-item, .exp-row, .skills-columns, .snapshot-pair, .subject-grid {
+    @media (max-width: 860px) {
+      .workspace.active {
         grid-template-columns: 1fr;
+        width: 98%;
       }
-      .portrait-box { max-width: 260px; }
-    }
-  </style>
-  <!-- ===================================================================== -->
-  <!-- END MODULE CSS                                                        -->
-  <!-- ===================================================================== -->
-</head>
-<body>
-
-  <div class="frame">
-
-    <!-- =================================================================== -->
-    <!-- START MODULE 1: COVER SCREEN                                        -->
-    <!-- =================================================================== -->
-    <section id="coverScreen" class="cover-screen">
-      <span class="eyebrow">PORTFOLIO // 2026</span>
-      <h2 class="cover-title">Your Full Name</h2>
-      <p class="cover-subtitle">Student, builder, and curious problem solver — working across code, systems, and design.</p>
-      <button id="enterBtn" class="enter-btn">Open Index →</button>
-    </section>
-    <!-- =================================================================== -->
-    <!-- END MODULE 1                                                        -->
-    <!-- =================================================================== -->
-
-
-    <!-- =================================================================== -->
-    <!-- START MODULE 2: 5-SECTION EDITORIAL INDEX                           -->
-    <!-- =================================================================== -->
-    <section id="directoryView" class="directory-view">
-      <div class="dir-header">
-        <div>
-          <span class="eyebrow">DIRECTORY</span>
-          <h1>Your Full Name</h1>
-        </div>
-        <button id="backCoverBtn" class="ghost-btn">← Cover</button>
-      </div>
-
-      <div class="index-list">
-        <button class="index-row" data-open-section="about">
-          <span class="row-num">01</span>
-          <span class="row-title">About Me</span>
-          <span class="row-desc">Background, interests, and direct contact links.</span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="index-row" data-open-section="projects">
-          <span class="row-num">02</span>
-          <span class="row-title">Projects</span>
-          <span class="row-desc">Selected builds, software tools, and experiments.</span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="index-row" data-open-section="experience">
-          <span class="row-num">03</span>
-          <span class="row-title">Experiences</span>
-          <span class="row-desc">Roles, research labs, internships, and leadership.</span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="index-row" data-open-section="skills">
-          <span class="row-num">04</span>
-          <span class="row-title">Skills</span>
-          <span class="row-desc">Languages, technical tools, and everyday practice.</span>
-          <span class="row-arrow">→</span>
-        </button>
-
-        <button class="index-row" data-open-section="subjects">
-          <span class="row-num">05</span>
-          <span class="row-title">Subjects</span>
-          <span class="row-desc">University coursework, notes, and core study.</span>
-          <span class="row-arrow">→</span>
-        </button>
-      </div>
-    </section>
-    <!-- =================================================================== -->
-    <!-- END MODULE 2                                                        -->
-    <!-- =================================================================== -->
-
-
-    <!-- ==================== EXPANDED SECTION CONTAINER =================== -->
-    <section id="detailView" class="detail-view">
-      <div class="top-strip">
-        <button id="backDirBtn" class="ghost-btn">← Index</button>
-        <div class="strip-tabs">
-          <button class="strip-btn" data-tab="about">01 About Me</button>
-          <button class="strip-btn" data-tab="projects">02 Projects</button>
-          <button class="strip-btn" data-tab="experience">03 Experiences</button>
-          <button class="strip-btn" data-tab="skills">04 Skills</button>
-          <button class="strip-btn" data-tab="subjects">05 Subjects</button>
-        </div>
-      </div>
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 3: ABOUT ME                                          -->
-      <!-- ================================================================= -->
-      <div id="about" class="tab-panel">
-        <div class="section-head">
-          <span class="eyebrow">01 // BIOGRAPHY</span>
-          <h2>About Me</h2>
-        </div>
-        <div class="about-grid">
-          <figure class="photo-frame portrait-box">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='13' fill='%23740D82'>[ portrait.jpg ]</text></svg>"
-              alt="Portrait photo"
-            />
-            <figcaption class="photo-caption">Fig 01. Portrait</figcaption>
-          </figure>
-
-          <div>
-            <h3>Hello, I'm [Your Name].</h3>
-            <p style="margin-top:0.85rem;">
-              Write a natural, direct paragraph about who you are, what you're studying, and what draws you to your work.
-            </p>
-            <p>
-              Use this second paragraph for things outside your resume: a hobby you spend way too much time on, or what you're hoping to build next.
-            </p>
-            <div class="text-links">
-              <a href="mailto:you@example.com">you@example.com ↗</a>
-              <a href="https://github.com/yourusername" target="_blank">GitHub ↗</a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn ↗</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ================================================================= -->
-      <!-- END MODULE 3                                                      -->
-      <!-- ================================================================= -->
-
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 4: PROJECTS                                          -->
-      <!-- ================================================================= -->
-      <div id="projects" class="tab-panel">
-        <div class="section-head">
-          <span class="eyebrow">02 // SELECTED WORK</span>
-          <h2>Projects</h2>
-        </div>
-
-        <article class="project-item">
-          <figure class="photo-frame project-photo">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='340' viewBox='0 0 600 340'><rect width='600' height='340' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-one.png ]</text></svg>"
-              alt="Project One preview"
-            />
-          </figure>
-          <div>
-            <h3>Project Title One</h3>
-            <div class="entry-meta">Python • Data Analysis • 2026</div>
-            <p>
-              Tell the short story behind this project: what sparked the idea, what broke along the way, and how it works now.
-            </p>
-            <div class="entry-links">
-              <a href="#" target="_blank">Source Code ↗</a>
-              <a href="#" target="_blank">Live Demo ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-item">
-          <figure class="photo-frame project-photo">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='340' viewBox='0 0 600 340'><rect width='600' height='340' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-two.png ]</text></svg>"
-              alt="Project Two preview"
-            />
-          </figure>
-          <div>
-            <h3>Project Title Two</h3>
-            <div class="entry-meta">HTML / CSS / JS • Web Tool • 2025</div>
-            <p>
-              Describe what this tool solves and what you learned building it.
-            </p>
-            <div class="entry-links">
-              <a href="#" target="_blank">Source Code ↗</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <!-- ================================================================= -->
-      <!-- END MODULE 4                                                      -->
-      <!-- ================================================================= -->
-
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 5: EXPERIENCES                                       -->
-      <!-- ================================================================= -->
-      <div id="experience" class="tab-panel">
-        <div class="section-head">
-          <span class="eyebrow">03 // EXPERIENCE</span>
-          <h2>Experiences</h2>
-        </div>
-
-        <div class="exp-row">
-          <figure class="photo-frame exp-thumb">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><rect width='260' height='180' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ team.jpg ]</text></svg>"
-              alt="Experience photo"
-            />
-          </figure>
-          <div>
-            <h3>Role Title — Organization</h3>
-            <div class="entry-meta">Sept 2025 – Present • City / Lab</div>
-            <p>
-              Write plainly about what you actually did day-to-day, what you built or improved, and who you worked with.
-            </p>
-          </div>
-        </div>
-
-        <div class="exp-row">
-          <figure class="photo-frame exp-thumb">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'><rect width='260' height='180' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ club.jpg ]</text></svg>"
-              alt="Club experience photo"
-            />
-          </figure>
-          <div>
-            <h3>Previous Role — Student Society / Company</h3>
-            <div class="entry-meta">Jan 2025 – Aug 2025 • Location</div>
-            <p>
-              Share a highlight or milestone from this experience—organizing an event, shipping a feature, or leading a small team.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- ================================================================= -->
-      <!-- END MODULE 5                                                      -->
-      <!-- ================================================================= -->
-
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 6: SKILLS                                            -->
-      <!-- ================================================================= -->
-      <div id="skills" class="tab-panel">
-        <div class="section-head">
-          <span class="eyebrow">04 // CAPABILITIES</span>
-          <h2>Skills</h2>
-        </div>
-
-        <div class="skills-columns">
-          <div class="skill-group">
-            <h4>Languages & Code</h4>
-            <ul class="skill-list">
-              <li>Python <span>Data & Scripting</span></li>
-              <li>C / C++ <span>Systems</span></li>
-              <li>JavaScript <span>Web</span></li>
-              <li>HTML & CSS <span>Interfaces</span></li>
-              <li>Git & Linux <span>Workflow</span></li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <h4>Tools & Practice</h4>
-            <ul class="skill-list">
-              <li>MATLAB <span>Simulation</span></li>
-              <li>LaTeX <span>Documentation</span></li>
-              <li>Data Visualization <span>Analysis</span></li>
-              <li>Prototyping <span>Hardware / UI</span></li>
-              <li>Technical Writing <span>Communication</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="snapshot-pair">
-          <figure class="photo-frame snapshot-box">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='440' height='220' viewBox='0 0 440 220'><rect width='440' height='220' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ desk-setup.jpg ]</text></svg>"
-              alt="Workspace snapshot"
-            />
-          </figure>
-          <figure class="photo-frame snapshot-box">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='440' height='220' viewBox='0 0 440 220'><rect width='440' height='220' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ notebook-or-lab.jpg ]</text></svg>"
-              alt="Lab or notebook snapshot"
-            />
-          </figure>
-        </div>
-      </div>
-      <!-- ================================================================= -->
-      <!-- END MODULE 6                                                      -->
-      <!-- ================================================================= -->
-
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 7: SUBJECTS (COURSEWORK)                             -->
-      <!-- ================================================================= -->
-      <div id="subjects" class="tab-panel">
-        <div class="section-head">
-          <span class="eyebrow">05 // COURSEWORK</span>
-          <h2>Subjects</h2>
-        </div>
-
-        <div class="subject-grid">
-          <div class="subject-item">
-            <div class="photo-frame subject-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ algorithms-notes.jpg ]</text></svg>"
-                alt="Algorithms coursework"
-              />
-            </div>
-            <div class="subject-code">CS-101 • Semester 1</div>
-            <div class="subject-title">Algorithms & Data Structures</div>
-            <p class="subject-desc">Complexity analysis, sorting, graph traversal, and dynamic programming.</p>
-          </div>
-
-          <div class="subject-item">
-            <div class="photo-frame subject-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ linear-algebra.jpg ]</text></svg>"
-                alt="Linear Algebra coursework"
-              />
-            </div>
-            <div class="subject-code">MATH-202 • Semester 2</div>
-            <div class="subject-title">Linear Algebra & Calculus</div>
-            <p class="subject-desc">Vector spaces, eigenvalues, multivariable optimization, and proofs.</p>
-          </div>
-
-          <div class="subject-item">
-            <div class="photo-frame subject-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ physics-lab.jpg ]</text></svg>"
-                alt="Physics coursework"
-              />
-            </div>
-            <div class="subject-code">PHYS-105 • Semester 2</div>
-            <div class="subject-title">Mechanics & Thermodynamics</div>
-            <p class="subject-desc">Classical dynamics, energy conservation, and thermodynamic cycles.</p>
-          </div>
-
-          <div class="subject-item">
-            <div class="photo-frame subject-photo">
-              <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='170' viewBox='0 0 420 170'><rect width='420' height='170' fill='%23F1EAF3'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='11' fill='%23740D82'>[ systems-design.jpg ]</text></svg>"
-                alt="Systems Engineering coursework"
-              />
-            </div>
-            <div class="subject-code">ENG-304 • Semester 3</div>
-            <div class="subject-title">Systems Engineering</div>
-            <p class="subject-desc">Modeling, simulation, and architecture of integrated systems.</p>
-          </div>
-        </div>
-      </div>
-      <!-- ================================================================= -->
-      <!-- END MODULE 7                                                      -->
-      <!-- ================================================================= -->
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 8: FOOTER                                            -->
-      <!-- ================================================================= -->
-      <footer>
-        <span>Your Full Name — Hosted on GitHub Pages</span>
-      </footer>
-      <!-- ================================================================= -->
-      <!-- END MODULE 8                                                      -->
-      <!-- ================================================================= -->
-    </section>
-
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- START MODULE JS: NAVIGATION SCRIPT                                    -->
-  <!-- ===================================================================== -->
-  <script>
-    const coverScreen = document.getElementById("coverScreen");
-    const directoryView = document.getElementById("directoryView");
-    const detailView = document.getElementById("detailView");
-
-    const enterBtn = document.getElementById("enterBtn");
-    const backCoverBtn = document.getElementById("backCoverBtn");
-    const backDirBtn = document.getElementById("backDirBtn");
-
-    const indexRows = document.querySelectorAll(".index-row");
-    const stripButtons = document.querySelectorAll(".strip-btn");
-    const panels = document.querySelectorAll(".tab-panel");
-
-    function switchStage(hideEl, showEl) {
-      hideEl.classList.remove("visible");
-      hideEl.classList.add("hiding");
-      setTimeout(() => {
-        hideEl.classList.remove("active", "hiding");
-        hideEl.classList.add("hidden");
-        showEl.classList.remove("hidden");
-        showEl.classList.add("active");
-        void showEl.offsetWidth;
-        showEl.classList.add("visible");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 260);
-    }
-
-    function activateSection(targetId) {
-      stripButtons.forEach((btn) => {
-        btn.classList.toggle("active", btn.getAttribute("data-tab") === targetId);
-      });
-
-      panels.forEach((panel) => {
-        panel.classList.remove("visible");
-        setTimeout(() => {
-          if (!panel.classList.contains("visible")) {
-            panel.classList.remove("active");
-          }
-        }, 200);
-      });
-
-      const targetPanel = document.getElementById(targetId);
-      setTimeout(() => {
-        targetPanel.classList.add("active");
-        void targetPanel.offsetWidth;
-        targetPanel.classList.add("visible");
-      }, 200);
-    }
-
-    enterBtn.addEventListener("click", () => switchStage(coverScreen, directoryView));
-    backCoverBtn.addEventListener("click", () => switchStage(directoryView, coverScreen));
-
-    indexRows.forEach((row) => {
-      row.addEventListener("click", () => {
-        const targetId = row.getAttribute("data-open-section");
-        switchStage(directoryView, detailView);
-        activateSection(targetId);
-      });
-    });
-
-    backDirBtn.addEventListener("click", () => switchStage(detailView, directoryView));
-
-    stripButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetId = btn.getAttribute("data-tab");
-        if (!document.getElementById(targetId).classList.contains("active")) {
-          activateSection(targetId);
-        }
-      });
-    });
-  </script>
-  <!-- ===================================================================== -->
-  <!-- END MODULE JS                                                         -->
-  <!-- ===================================================================== -->
-</body>
-</html>
+      .plum-rail {
+        border-right: none;
