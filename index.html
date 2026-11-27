@@ -15,16 +15,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- ===================================================================== -->
-  <!-- START MODULE CSS: DARK PLUM & UNDERWATER DIVE STYLES                  -->
+  <!-- ===================================================================== -->
+  <!-- START MODULE CSS: SINGLE-PAGE DARK PLUM MONOSPACE STYLES              -->
   <!-- ===================================================================== -->
   <style>
     :root {
       --plum: rgb(74, 8, 84);             /* Deep Aubergine Plum */
       --plum-dark: rgb(42, 4, 48);        /* Abyssal Plum */
-      --plum-mid: rgb(104, 15, 118);      /* Mid-tone Highlight */
       --plum-tint: rgba(74, 8, 84, 0.08);
-      --plum-wash: rgba(74, 8, 84, 0.16);
       --paper: #F6F4F7;
       --surface: #FFFFFF;
       --ink: #141017;
@@ -39,200 +37,100 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--mono);
       background-color: var(--paper);
       color: var(--ink);
       line-height: 1.65;
-      min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Subtle watercolor plum wash in corner */
+    /* Subtle watercolor plum wash in top corner */
     .watercolor-stain {
       position: fixed;
       top: -140px;
       left: -140px;
       width: 560px;
       height: 560px;
-      background: radial-gradient(circle, rgba(74, 8, 84, 0.15) 0%, rgba(74, 8, 84, 0.04) 55%, transparent 72%);
+      background: radial-gradient(circle, rgba(74, 8, 84, 0.14) 0%, rgba(74, 8, 84, 0.04) 55%, transparent 72%);
       filter: blur(45px);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ================= STAGE 1: WATER SURFACE & UNDERWATER DIVE ================= */
-    .ocean-stage {
+    /* ================= MODULE 1: CLEAN SINGLE-PAGE LANDING ================= */
+    .landing-hero {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       min-height: 100vh;
-      width: 100%;
+      width: 96%;
+      max-width: 1440px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 1.5rem;
-      overflow: hidden;
-      background: linear-gradient(180deg, var(--paper) 0%, #EDE7F0 52%, rgba(74, 8, 84, 0.14) 52.5%, rgba(42, 4, 48, 0.35) 100%);
-      transition: opacity 0.45s ease;
+      text-align: center;
+      padding: 2rem 1rem;
     }
 
-    .ocean-stage.hidden {
-      display: none;
-    }
-
-    /* Horizontal Waterline & Subtle Animated Wave */
-    .waterline {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 52%;
-      height: 2px;
-      background: var(--plum);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .water-waves {
-      position: absolute;
-      left: -5%;
-      width: 110%;
-      top: calc(52% - 14px);
-      height: 28px;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 0.55;
-    }
-
-    .wave-path {
-      fill: none;
-      stroke: var(--plum);
-      stroke-width: 1.5;
-      animation: driftWave 6s linear infinite;
-    }
-
-    @keyframes driftWave {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-80px); }
-    }
-
-    /* Name floating right at the waterline */
-    .diver-unit {
-      position: relative;
-      z-index: 4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      transform: translateY(-28px);
-      transition: transform 0.3s ease;
-    }
-
-    .diver-unit:hover {
-      transform: translateY(-20px);
-    }
-
-    .surface-name-plate {
+    .landing-plate {
       background: var(--plum);
       color: #FFFFFF;
-      padding: 1.35rem 2.75rem;
+      padding: 1.5rem 3rem;
       border: 2px solid var(--ink);
-      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-size: clamp(1.9rem, 4.8vw, 3.5rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      transition: background-color 0.2s ease, transform 0.25s ease;
+      margin-bottom: 1.75rem;
     }
 
-    .diver-unit:hover .surface-name-plate {
-      background: var(--plum-dark);
-    }
-
-    .dive-cue {
-      margin-top: 1.5rem;
-      font-size: 0.78rem;
-      color: var(--plum-dark);
+    .scroll-down-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.88rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      color: var(--plum-dark);
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      padding: 0.8rem 1.75rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
 
-    /* Plunge animation when clicked */
-    .diver-unit.submerging {
-      transform: translateY(48vh) scale(0.94);
-      opacity: 0;
-      transition: transform 0.85s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 0.75s ease 0.15s;
+    .scroll-down-btn:hover {
+      background: var(--plum-dark);
+      color: #FFFFFF;
+      transform: translateY(3px);
     }
 
-    /* Fullscreen Underwater Depth Curtain */
-    .abyss-curtain {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      pointer-events: none;
-      opacity: 0;
-      background: linear-gradient(180deg, rgba(104, 15, 118, 0.85) 0%, rgba(42, 4, 48, 0.98) 65%, #16021A 100%);
-      transition: opacity 0.45s ease;
-      overflow: hidden;
-    }
-
-    .abyss-curtain.active {
-      opacity: 1;
-    }
-
-    /* Rising Monospace / Geometric Bubbles */
-    .bubble {
-      position: absolute;
-      bottom: -30px;
-      border: 1.5px solid rgba(255, 255, 255, 0.55);
-      background: rgba(255, 255, 255, 0.08);
-      animation: riseBubble linear forwards;
-    }
-
-    @keyframes riseBubble {
-      0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.85;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.15);
-        opacity: 0;
-      }
-    }
-
-    /* ================= STAGE 2: FLAT LOW-MARGIN WORKSPACE ================= */
+    /* ================= MODULE 2: MAIN SINGLE-PAGE WORKSPACE ================= */
     .workspace {
-      display: none;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
       position: relative;
       z-index: 1;
       width: 96%;
       max-width: 1440px;
-      margin: 1.25rem auto 2.5rem;
+      margin: 0 auto 2.5rem;
       border: 2px solid var(--ink);
       background: var(--surface);
-    }
-
-    .workspace.active {
       display: grid;
-      grid-template-columns: 310px 1fr;
-      min-height: calc(100vh - 3.75rem);
+      grid-template-columns: 300px 1fr;
+      align-items: start;
     }
 
-    .workspace.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Left Dark Plum Navigation Rail */
+    /* Sticky Left Dark Plum Navigation Rail */
     .plum-rail {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
       background: var(--plum);
       color: #FFFFFF;
       border-right: 2px solid var(--ink);
@@ -256,7 +154,7 @@
     }
 
     .rail-identity h1 {
-      font-size: 1.55rem;
+      font-size: 1.5rem;
       font-weight: 700;
       line-height: 1.2;
       text-transform: uppercase;
@@ -269,30 +167,28 @@
       flex: 1;
     }
 
-    .nav-item {
+    .nav-link {
       width: 100%;
+      text-decoration: none;
       background: transparent;
-      border: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       color: rgba(255, 255, 255, 0.85);
       font-family: var(--mono);
       font-size: 0.95rem;
-      text-align: left;
       padding: 1.25rem 1.75rem;
-      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
       transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
     }
 
-    .nav-item:hover {
+    .nav-link:hover {
       background: var(--plum-dark);
       color: #FFFFFF;
       padding-left: 2.1rem;
     }
 
-    .nav-item.active {
+    .nav-link.active {
       background: var(--surface);
       color: var(--plum);
       font-weight: 700;
@@ -310,44 +206,38 @@
       border-top: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    .reset-surface-btn {
+    .top-btn {
+      display: block;
       width: 100%;
+      text-decoration: none;
       background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.45);
       color: #FFFFFF;
       font-family: var(--mono);
       font-size: 0.78rem;
       padding: 0.6rem 0.9rem;
-      cursor: pointer;
       text-align: center;
       transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .reset-surface-btn:hover {
+    .top-btn:hover {
       background: #FFFFFF;
       color: var(--plum-dark);
     }
 
-    /* Right Content Canvas */
-    .content-pane {
-      padding: 2.75rem 3.25rem;
+    /* Right Continuous Content Stream */
+    .content-stream {
       background: var(--surface);
     }
 
-    .tab-panel {
-      display: none;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+    .section-block {
+      padding: 3.25rem 3.25rem;
+      border-bottom: 2px solid var(--ink);
+      scroll-margin-top: 0;
     }
 
-    .tab-panel.active {
-      display: block;
-    }
-
-    .tab-panel.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .section-block:last-child {
+      border-bottom: none;
     }
 
     .panel-header {
@@ -356,7 +246,7 @@
       align-items: baseline;
       flex-wrap: wrap;
       gap: 1rem;
-      padding-bottom: 1.15rem;
+      padding-bottom: 1.1rem;
       margin-bottom: 2.25rem;
       border-bottom: 2px solid var(--ink);
     }
@@ -388,7 +278,7 @@
       max-width: 72ch;
     }
 
-    /* Flat Photo Frames */
+    /* Flat Photo Frames (About Me, Projects, Skills) */
     .flat-photo {
       border: 1.5px solid var(--ink);
       background: var(--plum-tint);
@@ -470,7 +360,7 @@
       margin-bottom: 0.9rem;
     }
 
-    /* MODULE 5: EXPERIENCES */
+    /* MODULE 5: EXPERIENCES (TEXT ONLY) */
     .exp-item {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -494,7 +384,7 @@
       color: var(--plum);
     }
 
-    /* MODULE 6: SKILLS */
+    /* MODULE 6: SKILLS (WITH A FEW PHOTOS) */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -548,7 +438,7 @@
       height: 175px;
     }
 
-    /* MODULE 7: SUBJECTS */
+    /* MODULE 7: SUBJECTS (NO PHOTOS) */
     .course-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -586,29 +476,38 @@
     }
 
     @media (max-width: 860px) {
-      .workspace.active {
+      .workspace {
         grid-template-columns: 1fr;
         width: 98%;
       }
       .plum-rail {
+        position: sticky;
+        top: 0;
+        min-height: auto;
+        z-index: 20;
         border-right: none;
         border-bottom: 2px solid var(--ink);
+      }
+      .rail-identity, .rail-footer {
+        display: none;
       }
       .rail-nav {
         flex-direction: row;
         flex-wrap: wrap;
       }
-      .nav-item {
+      .nav-link {
         width: auto;
         flex: 1 1 auto;
         border-right: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 0.85rem 1rem;
+        padding: 0.75rem 0.9rem;
+        font-size: 0.82rem;
       }
-      .nav-item:hover, .nav-item.active {
-        padding-left: 1rem;
+      .nav-link:hover, .nav-link.active {
+        padding-left: 0.9rem;
       }
-      .content-pane {
-        padding: 1.75rem 1.25rem;
+      .section-block {
+        padding: 2.25rem 1.35rem;
+        scroll-margin-top: 52px;
       }
       .about-layout, .project-block, .exp-item, .skills-grid, .skills-photos, .course-table {
         grid-template-columns: 1fr;
@@ -619,36 +518,26 @@
   <!-- END MODULE CSS                                                        -->
   <!-- ===================================================================== -->
 </head>
-<body>
+<body id="top">
 
   <div class="watercolor-stain" aria-hidden="true"></div>
 
- <!-- ===================================================================== -->
-  <!-- START MODULE 1: WATER SURFACE & UNDERWATER DIVE COVER                 -->
   <!-- ===================================================================== -->
-  <section id="oceanStage" class="ocean-stage">
-    <div id="diverUnit" class="diver-unit" role="button" tabindex="0" aria-label="Dive into portfolio">
-      <div class="surface-name-plate">YOUR FULL NAME</div>
-      <span class="dive-cue">[ click to dive ]</span>
-    </div>
-
-    <!-- Animated Waterline -->
-    <svg class="water-waves" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true">
-      <path class="wave-path" d="M0,14 Q20,4 40,14 T80,14 T120,14 T160,14 T200,14 T240,14 T280,14 T320,14 T360,14 T400,14 T440,14 T480,14 T520,14 T560,14 T600,14 T640,14 T680,14 T720,14 T760,14 T800,14 T840,14 T880,14 T920,14 T960,14 T1000,14 T1040,14 T1080,14 T1120,14 T1160,14 T1200,14 T1240,14 T1280,14" />
-    </svg>
-    <div class="waterline"></div>
-  </section>
-
-  <!-- Underwater Depth Transition Overlay -->
-  <div id="abyssCurtain" class="abyss-curtain" aria-hidden="true"></div>
+  <!-- START MODULE 1: SIMPLE CLEAN LANDING (SCROLLS TO PORTFOLIO)           -->
+  <!-- ===================================================================== -->
+  <header class="landing-hero">
+    <div class="landing-plate">YOUR FULL NAME</div>
+    <a href="#portfolio" class="scroll-down-btn">↓ Enter Index</a>
+  </header>
   <!-- ===================================================================== -->
   <!-- END MODULE 1                                                          -->
   <!-- ===================================================================== -->
 
+
   <!-- ===================================================================== -->
-  <!-- START MODULE 2: MAIN WORKSPACE & NAVIGATION RAIL                      -->
+  <!-- START MODULE 2: MAIN SINGLE-PAGE WORKSPACE & STICKY RAIL              -->
   <!-- ===================================================================== -->
-  <main id="workspace" class="workspace">
+  <main id="portfolio" class="workspace">
     <aside class="plum-rail">
       <div>
         <div class="rail-identity">
@@ -656,41 +545,41 @@
           <h1>YOUR FULL NAME</h1>
         </div>
 
-        <nav class="rail-nav" role="tablist">
-          <button class="nav-item active" data-tab="about">
+        <nav class="rail-nav" aria-label="Section navigation">
+          <a href="#about" class="nav-link active" data-section="about">
             <span>About Me</span>
             <span class="nav-code">01</span>
-          </button>
-          <button class="nav-item" data-tab="projects">
+          </a>
+          <a href="#projects" class="nav-link" data-section="projects">
             <span>Projects</span>
             <span class="nav-code">02</span>
-          </button>
-          <button class="nav-item" data-tab="experience">
+          </a>
+          <a href="#experience" class="nav-link" data-section="experience">
             <span>Experiences</span>
             <span class="nav-code">03</span>
-          </button>
-          <button class="nav-item" data-tab="skills">
+          </a>
+          <a href="#skills" class="nav-link" data-section="skills">
             <span>Skills</span>
             <span class="nav-code">04</span>
-          </button>
-          <button class="nav-item" data-tab="subjects">
+          </a>
+          <a href="#subjects" class="nav-link" data-section="subjects">
             <span>Subjects</span>
             <span class="nav-code">05</span>
-          </button>
+          </a>
         </nav>
       </div>
 
       <div class="rail-footer">
-       <button id="resetSurfaceBtn" class="reset-surface-btn">↑ Surface</button>
+        <a href="#top" class="top-btn">↑ Back to Top</a>
       </div>
     </aside>
 
-    <div class="content-pane">
+    <div class="content-stream">
 
       <!-- ================================================================= -->
       <!-- START MODULE 3: ABOUT ME (WITH PHOTO)                             -->
       <!-- ================================================================= -->
-      <section id="about" class="tab-panel active visible">
+      <section id="about" class="section-block">
         <div class="panel-header">
           <h2>01 // About Me</h2>
           <span class="panel-index">PROFILE_OVERVIEW</span>
@@ -699,7 +588,7 @@
         <div class="about-layout">
           <div class="flat-photo about-photo">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ portrait.jpg ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ portrait.jpg ]</text></svg>"
               alt="Portrait"
             />
           </div>
@@ -729,7 +618,7 @@
       <!-- ================================================================= -->
       <!-- START MODULE 4: PROJECTS (WITH PHOTOS)                            -->
       <!-- ================================================================= -->
-      <section id="projects" class="tab-panel">
+      <section id="projects" class="section-block">
         <div class="panel-header">
           <h2>02 // Projects</h2>
           <span class="panel-index">SELECTED_BUILDS</span>
@@ -738,7 +627,7 @@
         <article class="project-block">
           <div class="flat-photo project-photo">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-01.png ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ project-01.png ]</text></svg>"
               alt="Project One"
             />
           </div>
@@ -758,7 +647,7 @@
         <article class="project-block">
           <div class="flat-photo project-photo">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%23740D82'>[ project-02.png ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ project-02.png ]</text></svg>"
               alt="Project Two"
             />
           </div>
@@ -782,7 +671,7 @@
       <!-- ================================================================= -->
       <!-- START MODULE 5: EXPERIENCES (TEXT ONLY — NO PHOTOS)               -->
       <!-- ================================================================= -->
-      <section id="experience" class="tab-panel">
+      <section id="experience" class="section-block">
         <div class="panel-header">
           <h2>03 // Experiences</h2>
           <span class="panel-index">ROLES_&_HISTORY</span>
@@ -816,7 +705,7 @@
       <!-- ================================================================= -->
       <!-- START MODULE 6: SKILLS (WITH A FEW PHOTOS)                        -->
       <!-- ================================================================= -->
-      <section id="skills" class="tab-panel">
+      <section id="skills" class="section-block">
         <div class="panel-header">
           <h2>04 // Skills</h2>
           <span class="panel-index">STACK_&_TOOLS</span>
@@ -849,19 +738,19 @@
         <div class="skills-photos">
           <div class="flat-photo skill-thumb">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ setup-01.jpg ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ setup-01.jpg ]</text></svg>"
               alt="Skill photo 1"
             />
           </div>
           <div class="flat-photo skill-thumb">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ hardware-02.jpg ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ hardware-02.jpg ]</text></svg>"
               alt="Skill photo 2"
             />
           </div>
           <div class="flat-photo skill-thumb">
             <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%23740D82'>[ workspace-03.jpg ]</text></svg>"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ workspace-03.jpg ]</text></svg>"
               alt="Skill photo 3"
             />
           </div>
@@ -875,7 +764,7 @@
       <!-- ================================================================= -->
       <!-- START MODULE 7: SUBJECTS / COURSEWORK (NO PHOTOS)                 -->
       <!-- ================================================================= -->
-      <section id="subjects" class="tab-panel">
+      <section id="subjects" class="section-block">
         <div class="panel-header">
           <h2>05 // Subjects</h2>
           <span class="panel-index">ACADEMIC_COURSEWORK</span>
@@ -918,99 +807,28 @@
   <!-- ===================================================================== -->
 
 
-<!-- ===================================================================== -->
-  <!-- START MODULE JS: UNDERWATER DIVE & TAB SCRIPT                         -->
+  <!-- ===================================================================== -->
+  <!-- START MODULE JS: SCROLL-SPY ACTIVE SECTION HIGHLIGHTER                -->
   <!-- ===================================================================== -->
   <script>
-    const oceanStage = document.getElementById("oceanStage");
-    const diverUnit = document.getElementById("diverUnit");
-    const abyssCurtain = document.getElementById("abyssCurtain");
-    const workspace = document.getElementById("workspace");
-    const resetSurfaceBtn = document.getElementById("resetSurfaceBtn");
+    const sections = document.querySelectorAll(".section-block");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-    function spawnBubbles() {
-      abyssCurtain.innerHTML = "";
-      for (let i = 0; i < 22; i++) {
-        const bubble = document.createElement("div");
-        bubble.className = "bubble";
-        const size = Math.floor(Math.random() * 14) + 6;
-        bubble.style.width = size + "px";
-        bubble.style.height = size + "px";
-        bubble.style.left = Math.random() * 100 + "vw";
-        bubble.style.animationDuration = (Math.random() * 0.7 + 0.65) + "s";
-        bubble.style.animationDelay = (Math.random() * 0.25) + "s";
-        abyssCurtain.appendChild(bubble);
-      }
-    }
-
-    function diveIntoPortfolio() {
-      if (diverUnit.classList.contains("submerging")) return;
-
-      // 1. Plunge name beneath waterline & darken water
-      diverUnit.classList.add("submerging");
-      spawnBubbles();
-
-      setTimeout(() => {
-        abyssCurtain.classList.add("active");
-      }, 220);
-
-      // 2. Swap to deep plum workspace while submerged
-      setTimeout(() => {
-        oceanStage.classList.add("hidden");
-        diverUnit.classList.remove("submerging");
-        workspace.classList.add("active");
-        void workspace.offsetWidth;
-        workspace.classList.add("visible");
-        abyssCurtain.classList.remove("active");
-      }, 780);
-    }
-
-    diverUnit.addEventListener("click", diveIntoPortfolio);
-    diverUnit.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        diveIntoPortfolio();
-      }
-    });
-
-    // Return to Surface Cover
-    resetSurfaceBtn.addEventListener("click", () => {
-      abyssCurtain.classList.add("active");
-      setTimeout(() => {
-        workspace.classList.remove("visible", "active");
-        oceanStage.classList.remove("hidden");
-        abyssCurtain.classList.remove("active");
-      }, 420);
-    });
-
-    // Category Tab Switching
-    const navItems = document.querySelectorAll(".nav-item");
-    const panels = document.querySelectorAll(".tab-panel");
-
-    navItems.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetId = btn.getAttribute("data-tab");
-        const targetPanel = document.getElementById(targetId);
-
-        if (targetPanel.classList.contains("active")) return;
-
-        navItems.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        panels.forEach((p) => {
-          p.classList.remove("visible");
-          setTimeout(() => {
-            if (!p.classList.contains("visible")) p.classList.remove("active");
-          }, 180);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              link.classList.toggle("active", link.getAttribute("data-section") === id);
+            });
+          }
         });
+      },
+      { rootMargin: "-25% 0px -60% 0px" }
+    );
 
-        setTimeout(() => {
-          targetPanel.classList.add("active");
-          void targetPanel.offsetWidth;
-          targetPanel.classList.add("visible");
-        }, 180);
-      });
-    });
+    sections.forEach((sec) => observer.observe(sec));
   </script>
   <!-- ===================================================================== -->
   <!-- END MODULE JS                                                         -->
