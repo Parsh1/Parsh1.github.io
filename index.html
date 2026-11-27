@@ -16,18 +16,18 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- ===================================================================== -->
-  <!-- START MODULE CSS: SINGLE-PAGE DARK PLUM MONOSPACE STYLES              -->
+  <!-- START MODULE CSS: FOREST PINE CONTINUOUS SCROLL STYLES                -->
   <!-- ===================================================================== -->
   <style>
     :root {
-      --plum: rgb(74, 8, 84);             /* Deep Aubergine Plum */
-      --plum-dark: rgb(42, 4, 48);        /* Abyssal Plum */
-      --plum-tint: rgba(74, 8, 84, 0.08);
-      --paper: #F6F4F7;
+      --accent: rgb(19, 64, 46);          /* Deep Forest Pine */
+      --accent-dark: rgb(11, 38, 27);     /* Dark Spruce */
+      --accent-tint: rgba(19, 64, 46, 0.08);
+      --paper: #F6F5F0;
       --surface: #FFFFFF;
-      --ink: #141017;
-      --ink-muted: #524A59;
-      --border: #D5CCD9;
+      --ink: #131715;
+      --ink-muted: #4E5954;
+      --border: #CED6D2;
       --mono: "JetBrains Mono", "Space Mono", monospace;
     }
 
@@ -47,193 +47,45 @@
       color: var(--ink);
       line-height: 1.65;
       overflow-x: hidden;
-      position: relative;
+      padding: 1.5rem 0 3.5rem;
     }
 
-    /* Subtle watercolor plum wash in top corner */
-    .watercolor-stain {
-      position: fixed;
-      top: -140px;
-      left: -140px;
-      width: 560px;
-      height: 560px;
-      background: radial-gradient(circle, rgba(74, 8, 84, 0.14) 0%, rgba(74, 8, 84, 0.04) 55%, transparent 72%);
-      filter: blur(45px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ================= MODULE 1: CLEAN SINGLE-PAGE LANDING ================= */
-    .landing-hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
+    .page-frame {
       width: 96%;
-      max-width: 1440px;
+      max-width: 1400px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
+      border: 2px solid var(--ink);
+      background: var(--surface);
     }
 
-    .landing-plate {
-      background: var(--plum);
+    /* ================= MODULE 1: CLEAN HEADER / NAME BANNER ================= */
+    .top-banner {
+      background: var(--accent);
       color: #FFFFFF;
-      padding: 1.5rem 3rem;
-      border: 2px solid var(--ink);
-      font-size: clamp(1.9rem, 4.8vw, 3.5rem);
+      padding: 4.5rem 3.25rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .banner-tag {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .top-banner h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
       font-weight: 700;
+      line-height: 1.05;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      margin-bottom: 1.75rem;
     }
 
-    .scroll-down-btn {
-      display: inline-block;
-      text-decoration: none;
-      font-family: var(--mono);
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--plum-dark);
-      background: var(--surface);
-      border: 2px solid var(--ink);
-      padding: 0.8rem 1.75rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-    }
-
-    .scroll-down-btn:hover {
-      background: var(--plum-dark);
-      color: #FFFFFF;
-      transform: translateY(3px);
-    }
-
-    /* ================= MODULE 2: MAIN SINGLE-PAGE WORKSPACE ================= */
-    .workspace {
-      position: relative;
-      z-index: 1;
-      width: 96%;
-      max-width: 1440px;
-      margin: 0 auto 2.5rem;
-      border: 2px solid var(--ink);
-      background: var(--surface);
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      align-items: start;
-    }
-
-    /* Sticky Left Dark Plum Navigation Rail */
-    .plum-rail {
-      position: sticky;
-      top: 0;
-      min-height: 100vh;
-      background: var(--plum);
-      color: #FFFFFF;
-      border-right: 2px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .rail-identity {
-      padding: 2rem 1.75rem;
-      background: var(--plum-dark);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .rail-tag {
-      font-size: 0.72rem;
-      opacity: 0.75;
-      letter-spacing: 0.08em;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .rail-identity h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-    }
-
-    .rail-nav {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .nav-link {
-      width: 100%;
-      text-decoration: none;
-      background: transparent;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.85);
-      font-family: var(--mono);
-      font-size: 0.95rem;
-      padding: 1.25rem 1.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
-    }
-
-    .nav-link:hover {
-      background: var(--plum-dark);
-      color: #FFFFFF;
-      padding-left: 2.1rem;
-    }
-
-    .nav-link.active {
-      background: var(--surface);
-      color: var(--plum);
-      font-weight: 700;
-      padding-left: 2.1rem;
-    }
-
-    .nav-code {
-      font-size: 0.75rem;
-      opacity: 0.7;
-    }
-
-    .rail-footer {
-      padding: 1.25rem 1.75rem;
-      background: var(--plum-dark);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .top-btn {
-      display: block;
-      width: 100%;
-      text-decoration: none;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      color: #FFFFFF;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      padding: 0.6rem 0.9rem;
-      text-align: center;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-
-    .top-btn:hover {
-      background: #FFFFFF;
-      color: var(--plum-dark);
-    }
-
-    /* Right Continuous Content Stream */
-    .content-stream {
-      background: var(--surface);
-    }
-
+    /* ================= CONTINUOUS SECTION BLOCKS ================= */
     .section-block {
-      padding: 3.25rem 3.25rem;
+      padding: 3.5rem 3.25rem;
       border-bottom: 2px solid var(--ink);
-      scroll-margin-top: 0;
     }
 
     .section-block:last-child {
@@ -252,15 +104,15 @@
     }
 
     .panel-header h2 {
-      font-size: 2.1rem;
+      font-size: 2rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.02em;
-      color: var(--plum);
+      color: var(--accent);
     }
 
     .panel-index {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--ink-muted);
     }
 
@@ -278,10 +130,10 @@
       max-width: 72ch;
     }
 
-    /* Flat Photo Frames (About Me, Projects, Skills) */
+    /* Flat Photo Frames */
     .flat-photo {
       border: 1.5px solid var(--ink);
-      background: var(--plum-tint);
+      background: var(--accent-tint);
       display: block;
       overflow: hidden;
     }
@@ -293,7 +145,30 @@
       display: block;
     }
 
-    /* MODULE 3: ABOUT ME */
+    /* Inline Text Links (No buttons) */
+    .text-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .text-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .text-links a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    /* MODULE 2: ABOUT ME */
     .about-layout {
       display: grid;
       grid-template-columns: 270px 1fr;
@@ -306,29 +181,7 @@
       width: 100%;
     }
 
-    .flat-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-top: 1.75rem;
-    }
-
-    .flat-link {
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--plum);
-      border: 1.5px solid var(--plum);
-      padding: 0.55rem 1.1rem;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-
-    .flat-link:hover {
-      background: var(--plum);
-      color: #FFFFFF;
-    }
-
-    /* MODULE 4: PROJECTS */
+    /* MODULE 3: PROJECTS */
     .project-block {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
@@ -352,15 +205,15 @@
 
     .meta-line {
       display: inline-block;
-      background: var(--plum-tint);
-      color: var(--plum);
+      background: var(--accent-tint);
+      color: var(--accent);
       font-size: 0.78rem;
       font-weight: 700;
       padding: 0.2rem 0.6rem;
       margin-bottom: 0.9rem;
     }
 
-    /* MODULE 5: EXPERIENCES (TEXT ONLY) */
+    /* MODULE 4: EXPERIENCES (TEXT ONLY) */
     .exp-item {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -381,10 +234,10 @@
     .exp-date {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--plum);
+      color: var(--accent);
     }
 
-    /* MODULE 6: SKILLS (WITH A FEW PHOTOS) */
+    /* MODULE 5: SKILLS (WITH A FEW PHOTOS) */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -400,7 +253,7 @@
     .skill-box h4 {
       font-size: 0.85rem;
       color: #FFFFFF;
-      background: var(--plum);
+      background: var(--accent);
       padding: 0.35rem 0.75rem;
       display: inline-block;
       margin-bottom: 1.1rem;
@@ -438,7 +291,7 @@
       height: 175px;
     }
 
-    /* MODULE 7: SUBJECTS (NO PHOTOS) */
+    /* MODULE 6: SUBJECTS (NO PHOTOS) */
     .course-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -454,13 +307,13 @@
     }
 
     .course-cell:hover {
-      background: var(--plum-tint);
+      background: var(--accent-tint);
     }
 
     .course-tag {
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--plum);
+      color: var(--accent);
       margin-bottom: 0.4rem;
       display: block;
     }
@@ -475,39 +328,25 @@
       margin-bottom: 0;
     }
 
+    /* MODULE 7: FOOTER */
+    .site-footer {
+      background: var(--accent-dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 1.5rem 3.25rem;
+      border-top: 2px solid var(--ink);
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
     @media (max-width: 860px) {
-      .workspace {
-        grid-template-columns: 1fr;
-        width: 98%;
+      .page-frame {
+        width: 96%;
       }
-      .plum-rail {
-        position: sticky;
-        top: 0;
-        min-height: auto;
-        z-index: 20;
-        border-right: none;
-        border-bottom: 2px solid var(--ink);
-      }
-      .rail-identity, .rail-footer {
-        display: none;
-      }
-      .rail-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      .nav-link {
-        width: auto;
-        flex: 1 1 auto;
-        border-right: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 0.75rem 0.9rem;
-        font-size: 0.82rem;
-      }
-      .nav-link:hover, .nav-link.active {
-        padding-left: 0.9rem;
-      }
-      .section-block {
+      .top-banner, .section-block, .site-footer {
         padding: 2.25rem 1.35rem;
-        scroll-margin-top: 52px;
       }
       .about-layout, .project-block, .exp-item, .skills-grid, .skills-photos, .course-table {
         grid-template-columns: 1fr;
@@ -518,320 +357,259 @@
   <!-- END MODULE CSS                                                        -->
   <!-- ===================================================================== -->
 </head>
-<body id="top">
+<body>
 
-  <div class="watercolor-stain" aria-hidden="true"></div>
+  <main class="page-frame">
 
-  <!-- ===================================================================== -->
-  <!-- START MODULE 1: SIMPLE CLEAN LANDING (SCROLLS TO PORTFOLIO)           -->
-  <!-- ===================================================================== -->
-  <header class="landing-hero">
-    <div class="landing-plate">YOUR FULL NAME</div>
-    <a href="#portfolio" class="scroll-down-btn">↓ Enter Index</a>
-  </header>
-  <!-- ===================================================================== -->
-  <!-- END MODULE 1                                                          -->
-  <!-- ===================================================================== -->
+    <!-- =================================================================== -->
+    <!-- START MODULE 1: NAME HEADER                                         -->
+    <!-- =================================================================== -->
+    <header class="top-banner">
+      <span class="banner-tag">// PORTFOLIO_2026</span>
+      <h1>YOUR FULL NAME</h1>
+    </header>
+    <!-- =================================================================== -->
+    <!-- END MODULE 1                                                        -->
+    <!-- =================================================================== -->
 
 
-  <!-- ===================================================================== -->
-  <!-- START MODULE 2: MAIN SINGLE-PAGE WORKSPACE & STICKY RAIL              -->
-  <!-- ===================================================================== -->
-  <main id="portfolio" class="workspace">
-    <aside class="plum-rail">
-      <div>
-        <div class="rail-identity">
-          <span class="rail-tag">// INDEX_2026</span>
-          <h1>YOUR FULL NAME</h1>
-        </div>
-
-        <nav class="rail-nav" aria-label="Section navigation">
-          <a href="#about" class="nav-link active" data-section="about">
-            <span>About Me</span>
-            <span class="nav-code">01</span>
-          </a>
-          <a href="#projects" class="nav-link" data-section="projects">
-            <span>Projects</span>
-            <span class="nav-code">02</span>
-          </a>
-          <a href="#experience" class="nav-link" data-section="experience">
-            <span>Experiences</span>
-            <span class="nav-code">03</span>
-          </a>
-          <a href="#skills" class="nav-link" data-section="skills">
-            <span>Skills</span>
-            <span class="nav-code">04</span>
-          </a>
-          <a href="#subjects" class="nav-link" data-section="subjects">
-            <span>Subjects</span>
-            <span class="nav-code">05</span>
-          </a>
-        </nav>
+    <!-- =================================================================== -->
+    <!-- START MODULE 2: ABOUT ME (WITH PHOTO)                               -->
+    <!-- =================================================================== -->
+    <section id="about" class="section-block">
+      <div class="panel-header">
+        <h2>01 // About Me</h2>
+        <span class="panel-index">PROFILE_OVERVIEW</span>
       </div>
 
-      <div class="rail-footer">
-        <a href="#top" class="top-btn">↑ Back to Top</a>
+      <div class="about-layout">
+        <div class="flat-photo about-photo">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%2313402E'>[ portrait.jpg ]</text></svg>"
+            alt="Portrait"
+          />
+        </div>
+
+        <div>
+          <h3>Hello, I'm [Your Name].</h3>
+          <p style="margin-top:0.85rem;">
+            Write a direct, concise intro here—what you study, what you enjoy building, and what currently holds your attention.
+          </p>
+          <p>
+            Add a second short paragraph for personal context: hobbies, side projects, or the kind of problems you like solving.
+          </p>
+
+          <div class="text-links">
+            <a href="mailto:you@example.com">EMAIL ↗</a>
+            <a href="https://github.com/yourusername" target="_blank">GITHUB ↗</a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank">LINKEDIN ↗</a>
+          </div>
+        </div>
       </div>
-    </aside>
+    </section>
+    <!-- =================================================================== -->
+    <!-- END MODULE 2                                                        -->
+    <!-- =================================================================== -->
 
-    <div class="content-stream">
 
-      <!-- ================================================================= -->
-      <!-- START MODULE 3: ABOUT ME (WITH PHOTO)                             -->
-      <!-- ================================================================= -->
-      <section id="about" class="section-block">
-        <div class="panel-header">
-          <h2>01 // About Me</h2>
-          <span class="panel-index">PROFILE_OVERVIEW</span>
+    <!-- =================================================================== -->
+    <!-- START MODULE 3: PROJECTS (WITH PHOTOS)                              -->
+    <!-- =================================================================== -->
+    <section id="projects" class="section-block">
+      <div class="panel-header">
+        <h2>02 // Projects</h2>
+        <span class="panel-index">SELECTED_BUILDS</span>
+      </div>
+
+      <article class="project-block">
+        <div class="flat-photo project-photo">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%2313402E'>[ project-01.png ]</text></svg>"
+            alt="Project One"
+          />
         </div>
-
-        <div class="about-layout">
-          <div class="flat-photo about-photo">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='400' viewBox='0 0 320 400'><rect width='320' height='400' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ portrait.jpg ]</text></svg>"
-              alt="Portrait"
-            />
-          </div>
-
-          <div>
-            <h3>Hello, I'm [Your Name].</h3>
-            <p style="margin-top:0.85rem;">
-              Write a direct, concise intro here—what you study, what you enjoy building, and what currently holds your attention.
-            </p>
-            <p>
-              Add a second short paragraph for personal context: hobbies, side projects, or the kind of problems you like solving.
-            </p>
-
-            <div class="flat-links">
-              <a href="mailto:you@example.com" class="flat-link">EMAIL ↗</a>
-              <a href="https://github.com/yourusername" target="_blank" class="flat-link">GITHUB ↗</a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" class="flat-link">LINKEDIN ↗</a>
-            </div>
+        <div>
+          <h3>Project Title One</h3>
+          <span class="meta-line">PYTHON // DATA // 2026</span>
+          <p>
+            Explain what this project does, why you built it, and what the result was. Keep it concrete and technical.
+          </p>
+          <div class="text-links" style="margin-top:1rem;">
+            <a href="#" target="_blank">CODE ↗</a>
+            <a href="#" target="_blank">DEMO ↗</a>
           </div>
         </div>
-      </section>
-      <!-- ================================================================= -->
-      <!-- END MODULE 3                                                      -->
-      <!-- ================================================================= -->
+      </article>
 
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 4: PROJECTS (WITH PHOTOS)                            -->
-      <!-- ================================================================= -->
-      <section id="projects" class="section-block">
-        <div class="panel-header">
-          <h2>02 // Projects</h2>
-          <span class="panel-index">SELECTED_BUILDS</span>
+      <article class="project-block">
+        <div class="flat-photo project-photo">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%2313402E'>[ project-02.png ]</text></svg>"
+            alt="Project Two"
+          />
         </div>
-
-        <article class="project-block">
-          <div class="flat-photo project-photo">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ project-01.png ]</text></svg>"
-              alt="Project One"
-            />
-          </div>
-          <div>
-            <h3>Project Title One</h3>
-            <span class="meta-line">PYTHON // DATA // 2026</span>
-            <p>
-              Explain what this project does, why you built it, and what the result was. Keep it concrete and technical.
-            </p>
-            <div class="flat-links" style="margin-top:1rem;">
-              <a href="#" target="_blank" class="flat-link">CODE ↗</a>
-              <a href="#" target="_blank" class="flat-link">DEMO ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-block">
-          <div class="flat-photo project-photo">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320' viewBox='0 0 600 320'><rect width='600' height='320' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' fill='%234A0854'>[ project-02.png ]</text></svg>"
-              alt="Project Two"
-            />
-          </div>
-          <div>
-            <h3>Project Title Two</h3>
-            <span class="meta-line">HTML / CSS / JS // 2025</span>
-            <p>
-              Describe your second build here. Duplicate this <code>&lt;article class="project-block"&gt;</code> whenever you add another project.
-            </p>
-            <div class="flat-links" style="margin-top:1rem;">
-              <a href="#" target="_blank" class="flat-link">CODE ↗</a>
-            </div>
-          </div>
-        </article>
-      </section>
-      <!-- ================================================================= -->
-      <!-- END MODULE 4                                                      -->
-      <!-- ================================================================= -->
-
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 5: EXPERIENCES (TEXT ONLY — NO PHOTOS)               -->
-      <!-- ================================================================= -->
-      <section id="experience" class="section-block">
-        <div class="panel-header">
-          <h2>03 // Experiences</h2>
-          <span class="panel-index">ROLES_&_HISTORY</span>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-date">2025.09 — PRESENT<br>CITY / LAB</div>
-          <div>
-            <h3>Role Title — Organization</h3>
-            <p>
-              Outline what you worked on, the systems or tools you used, and concrete outcomes from this position.
-            </p>
+        <div>
+          <h3>Project Title Two</h3>
+          <span class="meta-line">HTML / CSS / JS // 2025</span>
+          <p>
+            Describe your second build here. Duplicate this <code>&lt;article class="project-block"&gt;</code> whenever you add another project.
+          </p>
+          <div class="text-links" style="margin-top:1rem;">
+            <a href="#" target="_blank">CODE ↗</a>
           </div>
         </div>
+      </article>
+    </section>
+    <!-- =================================================================== -->
+    <!-- END MODULE 3                                                        -->
+    <!-- =================================================================== -->
 
-        <div class="exp-item">
-          <div class="exp-date">2025.01 — 2025.08<br>LOCATION</div>
-          <div>
-            <h3>Previous Role — Student Society / Company</h3>
-            <p>
-              Describe your responsibilities, events organized, or technical contributions in this role.
-            </p>
-          </div>
+
+    <!-- =================================================================== -->
+    <!-- START MODULE 4: EXPERIENCES (TEXT ONLY — NO PHOTOS)                 -->
+    <!-- =================================================================== -->
+    <section id="experience" class="section-block">
+      <div class="panel-header">
+        <h2>03 // Experiences</h2>
+        <span class="panel-index">ROLES_&_HISTORY</span>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">2025.09 — PRESENT<br>CITY / LAB</div>
+        <div>
+          <h3>Role Title — Organization</h3>
+          <p>
+            Outline what you worked on, the systems or tools you used, and concrete outcomes from this position.
+          </p>
         </div>
-      </section>
-      <!-- ================================================================= -->
-      <!-- END MODULE 5                                                      -->
-      <!-- ================================================================= -->
+      </div>
 
-
-      <!-- ================================================================= -->
-      <!-- START MODULE 6: SKILLS (WITH A FEW PHOTOS)                        -->
-      <!-- ================================================================= -->
-      <section id="skills" class="section-block">
-        <div class="panel-header">
-          <h2>04 // Skills</h2>
-          <span class="panel-index">STACK_&_TOOLS</span>
+      <div class="exp-item">
+        <div class="exp-date">2025.01 — 2025.08<br>LOCATION</div>
+        <div>
+          <h3>Previous Role — Student Society / Company</h3>
+          <p>
+            Describe your responsibilities, events organized, or technical contributions in this role.
+          </p>
         </div>
-
-        <div class="skills-grid">
-          <div class="skill-box">
-            <h4>Languages</h4>
-            <ul class="skill-rows">
-              <li>Python <span>Scripting / Data</span></li>
-              <li>C / C++ <span>Systems</span></li>
-              <li>JavaScript <span>Web</span></li>
-              <li>HTML / CSS <span>Layout</span></li>
-              <li>SQL / Bash <span>CLI</span></li>
-            </ul>
-          </div>
-
-          <div class="skill-box">
-            <h4>Tools & Methods</h4>
-            <ul class="skill-rows">
-              <li>Git & GitHub <span>Version Control</span></li>
-              <li>MATLAB <span>Modeling</span></li>
-              <li>Linux <span>Environment</span></li>
-              <li>LaTeX <span>Typesetting</span></li>
-              <li>CAD / Prototyping <span>Hardware</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="skills-photos">
-          <div class="flat-photo skill-thumb">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ setup-01.jpg ]</text></svg>"
-              alt="Skill photo 1"
-            />
-          </div>
-          <div class="flat-photo skill-thumb">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ hardware-02.jpg ]</text></svg>"
-              alt="Skill photo 2"
-            />
-          </div>
-          <div class="flat-photo skill-thumb">
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23EFE6F2'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%234A0854'>[ workspace-03.jpg ]</text></svg>"
-              alt="Skill photo 3"
-            />
-          </div>
-        </div>
-      </section>
-      <!-- ================================================================= -->
-      <!-- END MODULE 6                                                      -->
-      <!-- ================================================================= -->
+      </div>
+    </section>
+    <!-- =================================================================== -->
+    <!-- END MODULE 4                                                        -->
+    <!-- =================================================================== -->
 
 
-      <!-- ================================================================= -->
-      <!-- START MODULE 7: SUBJECTS / COURSEWORK (NO PHOTOS)                 -->
-      <!-- ================================================================= -->
-      <section id="subjects" class="section-block">
-        <div class="panel-header">
-          <h2>05 // Subjects</h2>
-          <span class="panel-index">ACADEMIC_COURSEWORK</span>
+    <!-- =================================================================== -->
+    <!-- START MODULE 5: SKILLS (WITH A FEW PHOTOS)                          -->
+    <!-- =================================================================== -->
+    <section id="skills" class="section-block">
+      <div class="panel-header">
+        <h2>04 // Skills</h2>
+        <span class="panel-index">STACK_&_TOOLS</span>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h4>Languages</h4>
+          <ul class="skill-rows">
+            <li>Python <span>Scripting / Data</span></li>
+            <li>C / C++ <span>Systems</span></li>
+            <li>JavaScript <span>Web</span></li>
+            <li>HTML / CSS <span>Layout</span></li>
+            <li>SQL / Bash <span>CLI</span></li>
+          </ul>
         </div>
 
-        <div class="course-table">
-          <div class="course-cell">
-            <span class="course-tag">CS-101 // SEM 01</span>
-            <h3>Algorithms & Data Structures</h3>
-            <p>Asymptotic complexity, sorting algorithms, trees, graphs, and dynamic programming.</p>
-          </div>
-
-          <div class="course-cell">
-            <span class="course-tag">MATH-202 // SEM 02</span>
-            <h3>Linear Algebra & Calculus</h3>
-            <p>Vector spaces, eigenvalues, multivariable differentiation, and optimization.</p>
-          </div>
-
-          <div class="course-cell">
-            <span class="course-tag">PHYS-105 // SEM 02</span>
-            <h3>Mechanics & Thermodynamics</h3>
-            <p>Classical dynamics, conservation laws, and thermodynamic system analysis.</p>
-          </div>
-
-          <div class="course-cell">
-            <span class="course-tag">ENG-304 // SEM 03</span>
-            <h3>Systems Engineering</h3>
-            <p>Modeling, simulation, and architecture of integrated technical systems.</p>
-          </div>
+        <div class="skill-box">
+          <h4>Tools & Methods</h4>
+          <ul class="skill-rows">
+            <li>Git & GitHub <span>Version Control</span></li>
+            <li>MATLAB <span>Modeling</span></li>
+            <li>Linux <span>Environment</span></li>
+            <li>LaTeX <span>Typesetting</span></li>
+            <li>CAD / Prototyping <span>Hardware</span></li>
+          </ul>
         </div>
-      </section>
-      <!-- ================================================================= -->
-      <!-- END MODULE 7                                                      -->
-      <!-- ================================================================= -->
+      </div>
 
-    </div>
+      <div class="skills-photos">
+        <div class="flat-photo skill-thumb">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%2313402E'>[ setup-01.jpg ]</text></svg>"
+            alt="Skill photo 1"
+          />
+        </div>
+        <div class="flat-photo skill-thumb">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%2313402E'>[ hardware-02.jpg ]</text></svg>"
+            alt="Skill photo 2"
+          />
+        </div>
+        <div class="flat-photo skill-thumb">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'><rect width='320' height='200' fill='%23E6ECE9'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='12' fill='%2313402E'>[ workspace-03.jpg ]</text></svg>"
+            alt="Skill photo 3"
+          />
+        </div>
+      </div>
+    </section>
+    <!-- =================================================================== -->
+    <!-- END MODULE 5                                                        -->
+    <!-- =================================================================== -->
+
+
+    <!-- =================================================================== -->
+    <!-- START MODULE 6: SUBJECTS / COURSEWORK (NO PHOTOS)                   -->
+    <!-- =================================================================== -->
+    <section id="subjects" class="section-block">
+      <div class="panel-header">
+        <h2>05 // Subjects</h2>
+        <span class="panel-index">ACADEMIC_COURSEWORK</span>
+      </div>
+
+      <div class="course-table">
+        <div class="course-cell">
+          <span class="course-tag">CS-101 // SEM 01</span>
+          <h3>Algorithms & Data Structures</h3>
+          <p>Asymptotic complexity, sorting algorithms, trees, graphs, and dynamic programming.</p>
+        </div>
+
+        <div class="course-cell">
+          <span class="course-tag">MATH-202 // SEM 02</span>
+          <h3>Linear Algebra & Calculus</h3>
+          <p>Vector spaces, eigenvalues, multivariable differentiation, and optimization.</p>
+        </div>
+
+        <div class="course-cell">
+          <span class="course-tag">PHYS-105 // SEM 02</span>
+          <h3>Mechanics & Thermodynamics</h3>
+          <p>Classical dynamics, conservation laws, and thermodynamic system analysis.</p>
+        </div>
+
+        <div class="course-cell">
+          <span class="course-tag">ENG-304 // SEM 03</span>
+          <h3>Systems Engineering</h3>
+          <p>Modeling, simulation, and architecture of integrated technical systems.</p>
+        </div>
+      </div>
+    </section>
+    <!-- =================================================================== -->
+    <!-- END MODULE 6                                                        -->
+    <!-- =================================================================== -->
+
+
+    <!-- =================================================================== -->
+    <!-- START MODULE 7: FOOTER                                              -->
+    <!-- =================================================================== -->
+    <footer class="site-footer">
+      <span>YOUR FULL NAME</span>
+      <span>2026</span>
+    </footer>
+    <!-- =================================================================== -->
+    <!-- END MODULE 7                                                        -->
+    <!-- =================================================================== -->
+
   </main>
-  <!-- ===================================================================== -->
-  <!-- END MODULE 2                                                          -->
-  <!-- ===================================================================== -->
 
-
-  <!-- ===================================================================== -->
-  <!-- START MODULE JS: SCROLL-SPY ACTIVE SECTION HIGHLIGHTER                -->
-  <!-- ===================================================================== -->
-  <script>
-    const sections = document.querySelectorAll(".section-block");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
-            navLinks.forEach((link) => {
-              link.classList.toggle("active", link.getAttribute("data-section") === id);
-            });
-          }
-        });
-      },
-      { rootMargin: "-25% 0px -60% 0px" }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-  </script>
-  <!-- ===================================================================== -->
-  <!-- END MODULE JS                                                         -->
-  <!-- ===================================================================== -->
 </body>
 </html>
